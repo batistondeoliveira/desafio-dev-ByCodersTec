@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd cnab-file-api/ && mvn verify sonar:sonar -Dsonar.projectKey=cnab-file-api -Dsonar.host.url=http://localhost:9000 -Dsonar.login=3ffbe0485a4303948605bf2a21f9603611281793 --batch-mode -DskipTests -DskipITs
+cd cnab-file-api/ && mvn verify sonar:sonar -Dsonar.projectKey=cnab-file-api -Dsonar.host.url=http://localhost:9000 -Dsonar.login=194ffe1ff8d8330a8d12372c94e4e6fab44560b0 --batch-mode -DskipTests -DskipITs

@@ -33,6 +33,28 @@ services:
     networks:
       - bycoderstec  
 
+  cnab-file-api:
+    build:
+      context: ./cnab-file-api
+      dockerfile: Dockerfile
+    image: cnab-file-api
+    restart: always
+    container_name: cnab-file-api
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING.DATASOURCE.URL: jdbc:mysql://cnab-file-db:3307/cnab_file?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+      SPRING.DATASOURCE.USERNAME: root
+      SPRING.DATASOURCE.PASSWORD: root
+      SPRING.FLYWAY.URL: jdbc:mysql://cnab-file-db:3307/cnab_file?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+      SPRING.FLYWAY.USER: root
+      SPRING.FLYWAY.PASSWORD: root
+    ports:
+      - 8000:8000
+    depends_on:
+      - cnab-file-db
+    networks:
+      - bycoderstec
+      
 networks:
   bycoderstec:
     driver: bridge 
