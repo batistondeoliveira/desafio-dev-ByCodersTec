@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  sonarque:
+    image: sonarqube:8.9-community
+    container_name: sonarqube
+    ports:
+      - 9000:9000
+    volumes:      
+      - ./sonarqube/data:/opt/sonarqube/data
+      - ./sonarqube/logs:/opt/sonarqube/logs
+      - ./sonarqube/extensions:/opt/sonarqube/extensions
+    networks:
+      - bycoderstec  
+
+networks:
+  bycoderstec:
+    driver: bridge 
