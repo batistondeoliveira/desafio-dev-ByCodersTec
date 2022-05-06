@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
+import com.bycoderstec.cnabfileapi.services.helpers.enums.TipoTransacaoCnabEnum;
 
 public class LayoutCNAB {
 	private static String linha;
@@ -25,7 +26,8 @@ public class LayoutCNAB {
 		String valorStr = LayoutCNAB.linha.substring(9, 19);
 		Double valor = Double.parseDouble(valorStr);		
 		
-		return valor / 100;
+		return TipoTransacaoCnabEnum.toEnum(LayoutCNAB.getTipo())
+				.getMultiplicador() * (valor / 100);
 	}
 	
 	private static String getCpf() {
