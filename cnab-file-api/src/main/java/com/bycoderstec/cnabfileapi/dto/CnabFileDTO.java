@@ -32,21 +32,17 @@ public class CnabFileDTO {
 
 	private Integer status;
 
-	public CnabFileDTO(
-		Long id,
-		LocalDateTime dataHora, 
+	public CnabFileDTO(				
 		String fileName, 
 		MultipartFile conteudo, 
-		String user,
-		StatusCnabFile status
+		String user		
 	) {
-		super();
-		this.id = id;
-		this.datahora = dataHora;
+		super();		
+		this.datahora = LocalDateTime.now();
 		this.filename = fileName;
 		this.conteudo = conteudo;
 		this.user = user;
-		this.status = (status == null) ? null : status.getCod();
+		this.status = StatusCnabFile.PENDING.getCod();
 	}
 
 	public StatusCnabFile getStatus() {
