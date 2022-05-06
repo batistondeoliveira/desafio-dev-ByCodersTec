@@ -4,10 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CnabReaderServiceApplicationTests {
+class CnabFileApiApplicationTest {
 
 	@Test
-	void contextLoads() {
+	void main() {
+		CnabFileApiApplication.main(new String[] {});
 	}
 
 }
