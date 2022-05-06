@@ -32,14 +32,14 @@ public class CnabFileService {
 		return lista;
 	}
 	
-	public void processaCnabFile(CnabFileDTO dto) {
+	public List<Lancamento> processaCnabFile(CnabFileDTO dto) {
 		
 		try {
-			if (dto.getConteudo().getBytes().length == 0) {
+			if (dto.getConteudo() == null || dto.getConteudo().getBytes().length == 0) {
 				throw new FileException("O arquivo cnab está vazio.");
 			}
 			
-			this.fromMultipartFile(dto.getConteudo());		
+			return this.fromMultipartFile(dto.getConteudo());		
 		} catch (IOException e) {
 			log.error("Erro ao ler arquivo CNAB. Mensagem");	
 			e.printStackTrace();
