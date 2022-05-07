@@ -1,10 +1,12 @@
 package com.bycoderstec.cnabfileapi.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -46,21 +48,21 @@ public class CnabFileServiceTest {
 	public void whenProcessaCnabFileThenReturnLancamentoList() {
 		List<Lancamento> lancamento = service.processaCnabFile(dto);
 		
-		Assertions.assertEquals(21, lancamento.size());
+		assertEquals(21, lancamento.size());
 	}
 	
 	@Test
 	public void whenProcessaCnabFileAndConteudoNullThenThronFileException() {
 		dto.setConteudo(null);		
 		
-		Assertions.assertThrowsExactly(FileException.class, () -> { 
+		assertThrowsExactly(FileException.class, () -> { 
 			service.processaCnabFile(dto); 
 		});
 	}
 	
 	@Test
 	public void whenProcessaCnabFileAndConteudoBytesIsZeroThenThronFileException() {		
-		Assertions.assertThrowsExactly(FileException.class, () -> { 
+		assertThrowsExactly(FileException.class, () -> { 
 			service.processaCnabFile(dtoBytesZero);
 		});
 	}
