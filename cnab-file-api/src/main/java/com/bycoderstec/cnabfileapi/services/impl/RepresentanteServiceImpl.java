@@ -28,4 +28,17 @@ public class RepresentanteServiceImpl implements RepresentanteService {
 				
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
+
+	@Override
+	public Representante findByNomeAndLojaOrCreate(String nome, Loja loja) {
+		Representante representante = null;
+		
+		try {
+			representante = findByNomeAndLoja(nome, loja);
+		} catch(ObjectNotFoundException ex) {			
+			representante = create(new Representante(null, nome, loja));
+		}
+		
+		return representante;
+	}
 }
