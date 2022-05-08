@@ -8,9 +8,12 @@ import com.bycoderstec.cnabfileapi.domain.Lancamento;
 import com.bycoderstec.cnabfileapi.repositories.LancamentoRepository;
 import com.bycoderstec.cnabfileapi.services.LancamentoService;
 
-@Service
-public class LancamentoServiceImpl implements LancamentoService {
+import lombok.RequiredArgsConstructor;
 
+@Service
+@RequiredArgsConstructor
+public class LancamentoServiceImpl implements LancamentoService {
+	
 	private LancamentoRepository repository;
 
 	@Override
