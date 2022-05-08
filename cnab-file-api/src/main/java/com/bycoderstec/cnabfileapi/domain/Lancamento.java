@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
@@ -26,21 +27,30 @@ public class Lancamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull
+	@Column(name = "tipo_transacao")
 	private Integer tipoTransacao;
 	
+	@NotNull
 	private LocalDate data;
 	
+	@NotNull
 	private Double valor;
 	
+	@NotNull
 	private String cpf;
 	
+	@NotNull
 	private String cartao;
 	
+	@NotNull
 	private String hora;
 	
+	@NotNull
 	@Column(name = "representante_loja")
 	private String representanteLoja;
 	
+	@NotNull
 	@Column(name = "nome_loja")
 	private String nomeLoja;
 	
