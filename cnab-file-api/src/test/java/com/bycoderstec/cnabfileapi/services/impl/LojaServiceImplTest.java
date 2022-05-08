@@ -3,7 +3,10 @@ package com.bycoderstec.cnabfileapi.services.impl;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bycoderstec.cnabfileapi.domain.Loja;
 import com.bycoderstec.cnabfileapi.repositories.LojaRepository;
+import com.bycoderstec.cnabfileapi.services.impl.exceptions.ObjectNotFoundException;
 
 @SpringBootTest
 class LojaServiceImplTest {
@@ -29,7 +33,10 @@ class LojaServiceImplTest {
     private LojaRepository repository;
 
     private Loja loja;
+    
+    private Optional<Loja> optionalLoja;
 
+    private static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado";
 
     @BeforeEach
     void setUp() {
@@ -51,7 +58,7 @@ class LojaServiceImplTest {
     
     @Test
     void whenFindByNomeThenReturnAnListOfUsers() {
-        when(repository.findByNome(any())).thenReturn(loja);
+        when(repository.findByNome(any())).thenReturn(optionalLoja);
 
         Loja response = service.findByNome(NOME_LOJA);
 
@@ -61,7 +68,32 @@ class LojaServiceImplTest {
         assertEquals(NOME_LOJA, response.getNome());    
     }
     
+    @Test
+    void whenFindByIdThenReturnAnObjectNotFoundException() {    	
+        when(repository.findByNome(anyString()))
+                .thenThrow(new ObjectNotFoundException(OBJETO_NAO_ENCONTRADO));
+
+        try{
+            service.findByNome(NOME_LOJA);
+        } catch (Exception ex) {
+            assertEquals(ObjectNotFoundException.class, ex.getClass());
+            assertEquals(OBJETO_NAO_ENCONTRADO, ex.getMessage());
+        }
+    }
+    
+    void whenFindByNomeOrCreateSuccess() {
+    	when(repository.save(any())).thenReturn(loja);
+
+        Loja response = service.findByNomeOrCreate(loja.getNome());
+
+        assertNotNull(response);               
+        assertEquals(Loja.class, response.getClass());        
+        assertEquals(ID, response.getId());
+        assertEquals(NOME_LOJA, response.getNome());
+    }
+    
     private void startLoja() {    	    	
-    	loja = new Loja(ID, NOME_LOJA);        
+    	loja = new Loja(ID, NOME_LOJA);
+    	optionalLoja = Optional.of(new Loja(ID, NOME_LOJA));
     }
 }
