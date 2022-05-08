@@ -16,7 +16,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
-import com.bycoderstec.cnabfileapi.dto.CnabFileDTO;
+import com.bycoderstec.cnabfileapi.domain.dto.CnabFileDTO;
 import com.bycoderstec.cnabfileapi.services.impl.exceptions.FileException;
 
 import lombok.RequiredArgsConstructor;
