@@ -3,7 +3,7 @@ package com.bycoderstec.cnabfileapi.services.impl.helpers;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import com.bycoderstec.cnabfileapi.domain.Lancamento;
+import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
 public class LayoutCNAB {
@@ -53,20 +53,20 @@ public class LayoutCNAB {
 		return LayoutCNAB.linha.substring(62, 80).trim();
 	}
 	
-	public static Lancamento convertToLancamento(String linha) {
+	public static LancamentoDTO convertToLancamento(String linha) {
 		LayoutCNAB.linha = linha;
 		
-		Lancamento lancamento = new Lancamento();
+		LancamentoDTO dto = new LancamentoDTO();
 		
-		lancamento.setTipoTransacao(TipoTransacaoCnabEnum.toEnum(LayoutCNAB.getTipo()));
-		lancamento.setData(LayoutCNAB.getData());
-		lancamento.setValor(LayoutCNAB.getValor());
-		lancamento.setCpf(LayoutCNAB.getCpf());
-		lancamento.setCartao(LayoutCNAB.getCartao());
-		lancamento.setHora(LayoutCNAB.getHora());
-		lancamento.setRepresentanteLoja(LayoutCNAB.getRepresentanteLoja());
-		lancamento.setNomeLoja(LayoutCNAB.getNomeLoja());
+		dto.setTipoTransacao(TipoTransacaoCnabEnum.toEnum(LayoutCNAB.getTipo()));
+		dto.setData(LayoutCNAB.getData());
+		dto.setValor(LayoutCNAB.getValor());
+		dto.setCpf(LayoutCNAB.getCpf());
+		dto.setCartao(LayoutCNAB.getCartao());
+		dto.setHora(LayoutCNAB.getHora());
+		dto.setRepresentanteLoja(LayoutCNAB.getRepresentanteLoja());
+		dto.setNomeLoja(LayoutCNAB.getNomeLoja());
 		
-		return lancamento;		
+		return dto;		
 	}
 }
