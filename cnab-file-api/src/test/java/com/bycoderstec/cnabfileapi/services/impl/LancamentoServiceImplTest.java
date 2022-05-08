@@ -2,7 +2,7 @@ package com.bycoderstec.cnabfileapi.services.impl;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -18,6 +18,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
+import com.bycoderstec.cnabfileapi.domain.Loja;
+import com.bycoderstec.cnabfileapi.domain.Representante;
 import com.bycoderstec.cnabfileapi.repositories.LancamentoRepository;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
@@ -38,8 +40,12 @@ class LancamentoServiceImplTest {
 
 	private static final String HORA = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
+	private static final Integer ID_REPRESENTANTE = 1;
+	
 	private static final String REPRESENTANTE_LOJA = "Coders";
-
+	
+	private static final Integer ID_LOJA = 1;
+	
 	private static final String NOME_LOJA = "ByCodersTec";
 	
 	private static final Integer INDEX = 0;
@@ -51,6 +57,10 @@ class LancamentoServiceImplTest {
     private LancamentoRepository repository;
 
     private Lancamento lancamento;
+    
+    private Loja loja;
+    
+    private Representante representante;
 
 
     @BeforeEach
@@ -74,8 +84,8 @@ class LancamentoServiceImplTest {
         assertEquals(CPF, response.get(INDEX).getCpf());
         assertEquals(CARTAO, response.get(INDEX).getCartao());
         assertEquals(HORA, response.get(INDEX).getHora());
-        assertEquals(REPRESENTANTE_LOJA, response.get(INDEX).getRepresentanteLoja());
-        assertEquals(NOME_LOJA, response.get(INDEX).getNomeLoja());            	   
+        assertEquals(representante, response.get(INDEX).getRepresentanteLoja());
+        assertEquals(loja, response.get(INDEX).getNomeLoja());            	   
     }
     
     @Test
@@ -95,11 +105,13 @@ class LancamentoServiceImplTest {
         assertEquals(CPF, response.get(INDEX).getCpf());
         assertEquals(CARTAO, response.get(INDEX).getCartao());
         assertEquals(HORA, response.get(INDEX).getHora());
-        assertEquals(REPRESENTANTE_LOJA, response.get(INDEX).getRepresentanteLoja());
-        assertEquals(NOME_LOJA, response.get(INDEX).getNomeLoja());    
+        assertEquals(representante, response.get(INDEX).getRepresentanteLoja());
+        assertEquals(loja, response.get(INDEX).getNomeLoja());    
     }
     
-    private void startLancamento() {    	    	
-        lancamento = new Lancamento(ID, TIPO_TRANSACAO, DATA, VALOR, CPF, CARTAO, HORA, REPRESENTANTE_LOJA, NOME_LOJA);        
+    private void startLancamento() {
+    	loja = new Loja(ID_LOJA, NOME_LOJA);
+    	representante = new Representante(ID_REPRESENTANTE, REPRESENTANTE_LOJA, loja);
+        lancamento = new Lancamento(ID, TIPO_TRANSACAO, DATA, VALOR, CPF, CARTAO, HORA, representante, loja);        
     }
 }
