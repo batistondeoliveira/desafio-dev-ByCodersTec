@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -47,13 +49,15 @@ public class Lancamento {
 	private String hora;
 	
 	@NotNull
-	@Column(name = "representante_loja")
-	private String representanteLoja;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="representante_loja")
+	private Representante representanteLoja;
 	
-	@NotNull
-	@Column(name = "nome_loja")
-	private String nomeLoja;
-	
+	@NotNull	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="nome_loja")
+	private Loja nomeLoja;
+		
 	public TipoTransacaoCnabEnum getTipoTransacao() {
 		return TipoTransacaoCnabEnum.toEnum(tipoTransacao);
 	}
