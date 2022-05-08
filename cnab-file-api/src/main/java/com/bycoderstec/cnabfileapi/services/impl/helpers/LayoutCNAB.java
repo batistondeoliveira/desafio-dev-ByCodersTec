@@ -1,10 +1,10 @@
-package com.bycoderstec.cnabfileapi.services.helpers;
+package com.bycoderstec.cnabfileapi.services.impl.helpers;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
-import com.bycoderstec.cnabfileapi.services.helpers.enums.TipoTransacaoCnabEnum;
+import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
 public class LayoutCNAB {
 	private static String linha;

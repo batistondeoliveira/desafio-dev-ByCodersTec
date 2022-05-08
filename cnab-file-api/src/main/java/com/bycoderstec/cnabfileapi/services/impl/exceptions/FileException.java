@@ -1,4 +1,4 @@
-package com.bycoderstec.cnabfileapi.services.exceptions;
+package com.bycoderstec.cnabfileapi.services.impl.exceptions;
 
 public class FileException extends RuntimeException {
 

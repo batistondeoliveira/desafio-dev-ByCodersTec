@@ -1,4 +1,4 @@
-package com.bycoderstec.cnabfileapi.services.helpers.enums;
+package com.bycoderstec.cnabfileapi.services.impl.helpers.enums;
 
 public enum TipoTransacaoCnabEnum {
 
