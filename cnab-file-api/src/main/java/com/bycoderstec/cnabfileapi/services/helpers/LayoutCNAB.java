@@ -58,7 +58,7 @@ public class LayoutCNAB {
 		
 		Lancamento lancamento = new Lancamento();
 		
-		lancamento.setTipo(LayoutCNAB.getTipo());
+		lancamento.setTipoTransacao(TipoTransacaoCnabEnum.toEnum(LayoutCNAB.getTipo()));
 		lancamento.setData(LayoutCNAB.getData());
 		lancamento.setValor(LayoutCNAB.getValor());
 		lancamento.setCpf(LayoutCNAB.getCpf());

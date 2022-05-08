@@ -9,11 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.bycoderstec.cnabfileapi.services.helpers.enums.TipoTransacaoCnabEnum;
 
-@Getter
-@Setter
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "lancamento")
 public class Lancamento {
@@ -22,7 +26,7 @@ public class Lancamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Integer tipo;
+	private Integer tipoTransacao;
 	
 	private LocalDate data;
 	
@@ -39,4 +43,12 @@ public class Lancamento {
 	
 	@Column(name = "nome_loja")
 	private String nomeLoja;
+	
+	public TipoTransacaoCnabEnum getTipoTransacao() {
+		return TipoTransacaoCnabEnum.toEnum(tipoTransacao);
+	}
+
+	public void setTipoTransacao(TipoTransacaoCnabEnum tipoTransacao) {
+		this.tipoTransacao = tipoTransacao.getCod();
+	}
 }
