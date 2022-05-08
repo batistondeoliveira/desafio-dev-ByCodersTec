@@ -15,11 +15,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
 import com.bycoderstec.cnabfileapi.domain.Loja;
 import com.bycoderstec.cnabfileapi.domain.Representante;
+import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.repositories.LancamentoRepository;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
@@ -55,8 +57,13 @@ class LancamentoServiceImplTest {
 
     @Mock
     private LancamentoRepository repository;
+    
+    @Mock
+    private ModelMapper mapper;
 
     private Lancamento lancamento;
+    
+    private LancamentoDTO dto;
     
     private Loja loja;
     
@@ -73,7 +80,7 @@ class LancamentoServiceImplTest {
     void whenCreateThenReturnSuccess() {    	
         when(repository.saveAll(anyCollection())).thenReturn(List.of(lancamento));
 
-        List<Lancamento> response = service.createAll(List.of(lancamento));
+        List<Lancamento> response = service.createAll(List.of(dto));
 
         assertNotNull(response);               
         assertEquals(response.size(), response.size());
@@ -113,5 +120,6 @@ class LancamentoServiceImplTest {
     	loja = new Loja(ID_LOJA, NOME_LOJA);
     	representante = new Representante(ID_REPRESENTANTE, REPRESENTANTE_LOJA, loja);
         lancamento = new Lancamento(ID, TIPO_TRANSACAO, DATA, VALOR, CPF, CARTAO, HORA, representante, loja);        
+        dto = new LancamentoDTO(ID, TIPO_TRANSACAO, DATA, VALOR, CPF, CARTAO, HORA, representante.getNome(), loja.getNome());
     }
 }
