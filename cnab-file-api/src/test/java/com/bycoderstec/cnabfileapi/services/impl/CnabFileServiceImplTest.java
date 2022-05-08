@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @SpringBootTest
 @RequiredArgsConstructor
-public class CnabFileServiceImplTest {
+class CnabFileServiceImplTest {
 	
 	private static final String BYCODERSTEC = "bycoderstec";
 
@@ -45,14 +45,14 @@ public class CnabFileServiceImplTest {
 	}
 	
 	@Test
-	public void whenProcessaCnabFileThenReturnLancamentoList() {
+	void whenProcessaCnabFileThenReturnLancamentoList() {
 		List<Lancamento> lancamento = service.processaCnabFile(dto);
 		
 		assertEquals(21, lancamento.size());
 	}
 	
 	@Test
-	public void whenProcessaCnabFileAndConteudoNullThenThronFileException() {
+	void whenProcessaCnabFileAndConteudoNullThenThronFileException() {
 		dto.setConteudo(null);		
 		
 		assertThrowsExactly(FileException.class, () -> { 
@@ -61,13 +61,13 @@ public class CnabFileServiceImplTest {
 	}
 	
 	@Test
-	public void whenProcessaCnabFileAndConteudoBytesIsZeroThenThronFileException() {		
+	void whenProcessaCnabFileAndConteudoBytesIsZeroThenThronFileException() {		
 		assertThrowsExactly(FileException.class, () -> { 
 			service.processaCnabFile(dtoBytesZero);
 		});
 	}
 		
-	public void loadFile() {		
+	private void loadFile() {		
 		try {			
 		    InputStream inputStream = CnabFileServiceImplTest.class.getResourceAsStream(CNAB_FILE_NAME);
 		    
@@ -79,7 +79,7 @@ public class CnabFileServiceImplTest {
 		}
 	}
 		
-	public void loadByteZero() {
+	private void loadByteZero() {
 		try {			
 		    InputStream inputStream = CnabFileServiceImplTest.class.getResourceAsStream(CNAB_FILE_NAME_WITH_BYTES_ZERO);
 		    

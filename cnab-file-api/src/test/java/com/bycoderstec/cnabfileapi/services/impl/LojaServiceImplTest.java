@@ -16,7 +16,7 @@ import com.bycoderstec.cnabfileapi.domain.Loja;
 import com.bycoderstec.cnabfileapi.repositories.LojaRepository;
 
 @SpringBootTest
-public class LojaServiceImplTest {
+class LojaServiceImplTest {
 
 	private static final int ID = 1;
 	

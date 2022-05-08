@@ -22,7 +22,7 @@ import com.bycoderstec.cnabfileapi.repositories.LancamentoRepository;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
 @SpringBootTest
-public class LancamentoServiceImplTest {
+class LancamentoServiceImplTest {
 
 	private static final int ID = 1;
 
