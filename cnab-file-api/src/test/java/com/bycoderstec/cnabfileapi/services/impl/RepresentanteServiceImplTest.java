@@ -77,17 +77,28 @@ class RepresentanteServiceImplTest {
     }
     
     @Test
-    void whenFindByIdThenReturnAnObjectNotFoundException() {    	
+    void whenFindByNomeAndLojaThenReturnAnObjectNotFoundException() {    	
         when(repository.findByNomeAndLoja(anyString(), any()))
                 .thenThrow(new ObjectNotFoundException(OBJETO_NAO_ENCONTRADO));
 
         try{
-            service.findByNomeAndLoja(NOME_LOJA, loja);
+            service.findByNomeAndLoja(REPRESENTANTE_LOJA, loja);
         } catch (Exception ex) {
             assertEquals(ObjectNotFoundException.class, ex.getClass());
             assertEquals(OBJETO_NAO_ENCONTRADO, ex.getMessage());
         }
     }    
+    
+    void whenFindByNomeOrCreateSuccess() {
+    	when(repository.save(any())).thenReturn(loja);
+
+        Representante response = service.findByNomeAndLojaOrCreate(representante.getNome(), representante.getLoja());
+
+        assertNotNull(response);               
+        assertEquals(Loja.class, response.getClass());        
+        assertEquals(ID, response.getId());
+        assertEquals(NOME_LOJA, response.getNome());
+    }
     
     private void startRepresentante() {    	    	
     	loja = new Loja(ID_LOJA, NOME_LOJA);
