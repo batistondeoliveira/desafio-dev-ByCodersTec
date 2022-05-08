@@ -17,8 +17,8 @@ public class LancamentoServiceImpl implements LancamentoService {
 	private LancamentoRepository repository;
 
 	@Override
-	public Lancamento create(Lancamento obj) {
-		return repository.save(obj);
+	public List<Lancamento> createAll(List<Lancamento> lista) {
+		return repository.saveAll(lista);
 	}
 
 	@Override
