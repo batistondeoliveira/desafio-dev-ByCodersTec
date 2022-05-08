@@ -2,7 +2,7 @@ package com.bycoderstec.cnabfileapi.services.impl;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -60,22 +60,22 @@ public class LancamentoServiceImplTest {
     }
           
     @Test
-    void whenCreateThenReturnSuccess() {
-        when(repository.save(any())).thenReturn(lancamento);
+    void whenCreateThenReturnSuccess() {    	
+        when(repository.saveAll(anyCollection())).thenReturn(List.of(lancamento));
 
-        Lancamento response = service.create(lancamento);
+        List<Lancamento> response = service.createAll(List.of(lancamento));
 
-        assertNotNull(response);
-        assertEquals(Lancamento.class, response.getClass());
-        assertEquals(ID, response.getId());
-        assertEquals(TIPO_TRANSACAO, response.getTipoTransacao().getCod());
-        assertEquals(DATA, response.getData());
-        assertEquals(VALOR, response.getValor());
-        assertEquals(CPF, response.getCpf());
-        assertEquals(CARTAO, response.getCartao());
-        assertEquals(HORA, response.getHora());
-        assertEquals(REPRESENTANTE_LOJA, response.getRepresentanteLoja());
-        assertEquals(NOME_LOJA, response.getNomeLoja());            	   
+        assertNotNull(response);               
+        assertEquals(response.size(), response.size());
+        assertEquals(ID, response.get(INDEX).getId());
+        assertEquals(TIPO_TRANSACAO, response.get(INDEX).getTipoTransacao().getCod());
+        assertEquals(DATA, response.get(INDEX).getData());
+        assertEquals(VALOR, response.get(INDEX).getValor());
+        assertEquals(CPF, response.get(INDEX).getCpf());
+        assertEquals(CARTAO, response.get(INDEX).getCartao());
+        assertEquals(HORA, response.get(INDEX).getHora());
+        assertEquals(REPRESENTANTE_LOJA, response.get(INDEX).getRepresentanteLoja());
+        assertEquals(NOME_LOJA, response.get(INDEX).getNomeLoja());            	   
     }
     
     @Test
