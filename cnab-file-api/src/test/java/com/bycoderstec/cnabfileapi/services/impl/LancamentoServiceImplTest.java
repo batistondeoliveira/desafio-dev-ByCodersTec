@@ -19,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
 import com.bycoderstec.cnabfileapi.repositories.LancamentoRepository;
-import com.bycoderstec.cnabfileapi.services.helpers.enums.TipoTransacaoCnabEnum;
+import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
 @SpringBootTest
 public class LancamentoServiceImplTest {
