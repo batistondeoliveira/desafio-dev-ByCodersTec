@@ -36,6 +36,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -66,10 +67,10 @@
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+		<dependency> 
+			<groupId>com.h2database</groupId> 
+			<artifactId>h2</artifactId> 
+			<scope>runtime</scope> 
 		</dependency>
 	</dependencies>
 
@@ -87,7 +88,7 @@
 						</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 
