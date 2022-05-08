@@ -1,4 +1,4 @@
-package com.bycoderstec.cnabfileapi.dto;
+package com.bycoderstec.cnabfileapi.domain.dto;
 
 import java.time.LocalDateTime;
 
