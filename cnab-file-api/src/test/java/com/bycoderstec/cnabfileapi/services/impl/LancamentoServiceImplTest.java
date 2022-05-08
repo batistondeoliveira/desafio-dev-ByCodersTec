@@ -2,7 +2,9 @@ package com.bycoderstec.cnabfileapi.services.impl;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -23,6 +25,8 @@ import com.bycoderstec.cnabfileapi.domain.Loja;
 import com.bycoderstec.cnabfileapi.domain.Representante;
 import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.repositories.LancamentoRepository;
+import com.bycoderstec.cnabfileapi.services.LojaService;
+import com.bycoderstec.cnabfileapi.services.RepresentanteService;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
 @SpringBootTest
@@ -59,14 +63,22 @@ class LancamentoServiceImplTest {
     private LancamentoRepository repository;
     
     @Mock
-    private ModelMapper mapper;
+    private ModelMapper mapper;    
+    
+    @Mock
+    private LojaService lojaService;
+    
+    @Mock
+    private RepresentanteService representanteService;
 
+    @Mock
     private Lancamento lancamento;
     
     private LancamentoDTO dto;
-    
+        
     private Loja loja;
     
+    @Mock
     private Representante representante;
 
 
@@ -77,7 +89,10 @@ class LancamentoServiceImplTest {
     }
           
     @Test
-    void whenCreateThenReturnSuccess() {    	
+    void whenCreateThenReturnSuccess() {    	    	
+    	when(lojaService.findByNomeOrCreate(anyString())).thenReturn(loja);    			
+    	when(representanteService.findByNomeAndLojaOrCreate(anyString(), any())).thenReturn(representante);
+    	when(mapper.map(any(), any())).thenReturn(lancamento);
         when(repository.saveAll(anyCollection())).thenReturn(List.of(lancamento));
 
         List<Lancamento> response = service.createAll(List.of(dto));
