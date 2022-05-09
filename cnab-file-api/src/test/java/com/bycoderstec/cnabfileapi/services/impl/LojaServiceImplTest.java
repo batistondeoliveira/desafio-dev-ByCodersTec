@@ -2,9 +2,8 @@ package com.bycoderstec.cnabfileapi.services.impl;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -60,7 +59,7 @@ class LojaServiceImplTest {
     }
     
     @Test
-    void whenFindByNomeThenReturnAnListOfUsers() {
+    void whenFindByNomeThenReturnAnListOfLoja() {
         when(repository.findByNome(any())).thenReturn(optionalLoja);
 
         Loja response = service.findByNome(NOME_LOJA);
