@@ -4,14 +4,14 @@ import {
   Route
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import FormCnab from "./components/FormCnab";
+import Form from "./pages/Form";
 
 function App() {
   return (
     <BrowserRouter basename="/cnab-frontend">
       <Navbar />
       <Routes>
-        <Route path="/" element={<FormCnab />} />        
+        <Route path="/" element={<Form />} />        
       </Routes>
     </BrowserRouter>
   );
