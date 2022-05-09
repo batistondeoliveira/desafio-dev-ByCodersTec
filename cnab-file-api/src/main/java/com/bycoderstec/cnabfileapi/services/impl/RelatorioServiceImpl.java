@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
 import com.bycoderstec.cnabfileapi.domain.Loja;
@@ -17,6 +18,7 @@ import com.bycoderstec.cnabfileapi.services.LojaService;
 import com.bycoderstec.cnabfileapi.services.RelatorioService;
 import com.bycoderstec.cnabfileapi.services.RepresentanteService;
 
+@Service
 public class RelatorioServiceImpl implements RelatorioService {
 
 	@Autowired
