@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,8 @@ class RepresentanteServiceImplTest {
 	private static final String NOME_LOJA = "ByCodersTec";
 	
 	private static final String OBJETO_NAO_ENCONTRADO = "Objeto não encontrado";	
+	
+	private static final Integer INDEX = 0;
 
 	@InjectMocks
     private RepresentanteServiceImpl service;
@@ -64,7 +67,7 @@ class RepresentanteServiceImplTest {
     }
     
     @Test
-    void whenFindByNomeThenReturnAnListOfR() {
+    void whenFindByNomeThenReturnAnListOfRepresentante() {
         when(repository.findByNomeAndLoja(anyString(), any())).thenReturn(optionalRepresentante);
 
         Representante response = service.findByNomeAndLoja(representante.getNome(), representante.getLoja());
@@ -89,15 +92,30 @@ class RepresentanteServiceImplTest {
         }
     }    
     
+    @Test
+    void whenFindAllThenReturnList() {
+    	when(repository.findAll()).thenReturn(List.of(representante));
+
+        List<Representante> response = service.findAll();
+
+        assertNotNull(response);
+        assertEquals(1, response.size());
+        assertEquals(ID, response.get(INDEX).getId());
+        assertEquals(REPRESENTANTE_LOJA, response.get(INDEX).getNome());
+        assertEquals(loja, response.get(INDEX).getLoja());
+    }
+    
+    @Test
     void whenFindByNomeOrCreateSuccess() {
-    	when(repository.save(any())).thenReturn(loja);
+    	when(repository.save(any())).thenReturn(representante);
 
         Representante response = service.findByNomeAndLojaOrCreate(representante.getNome(), representante.getLoja());
 
         assertNotNull(response);               
-        assertEquals(Loja.class, response.getClass());        
+        assertEquals(Representante.class, response.getClass());        
         assertEquals(ID, response.getId());
-        assertEquals(NOME_LOJA, response.getNome());
+        assertEquals(REPRESENTANTE_LOJA, response.getNome());
+        assertEquals(loja, response.getLoja());
     }
     
     private void startRepresentante() {    	    	
