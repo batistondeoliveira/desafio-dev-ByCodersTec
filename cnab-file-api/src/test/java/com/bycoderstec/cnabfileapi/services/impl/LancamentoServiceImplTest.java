@@ -93,7 +93,7 @@ class LancamentoServiceImplTest {
         List<Lancamento> response = service.createAll(List.of(dto));
 
         assertNotNull(response);               
-        assertEquals(response.size(), response.size());
+        assertEquals(1, response.size());
         assertEquals(ID, response.get(INDEX).getId());
         assertEquals(TIPO_TRANSACAO, response.get(INDEX).getTipoTransacao().getCod());
         assertEquals(DATA, response.get(INDEX).getData());
