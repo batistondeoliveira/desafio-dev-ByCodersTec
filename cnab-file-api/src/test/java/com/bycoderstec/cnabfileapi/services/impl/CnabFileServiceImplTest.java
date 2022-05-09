@@ -3,6 +3,7 @@ package com.bycoderstec.cnabfileapi.services.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -27,9 +28,9 @@ class CnabFileServiceImplTest {
 	
 	private static final String BYCODERSTEC = "bycoderstec";
 
-	private static final String CNAB_FILE_NAME = "CNAB.txt";
+	private static final String CNAB_FILE_NAME = "src/main/resources/test/CNAB.txt";
 	
-	private static final String CNAB_FILE_NAME_WITH_BYTES_ZERO = "CNAB_0_BYTES.txt";
+	private static final String CNAB_FILE_NAME_WITH_BYTES_ZERO = "src/main/resources/test/CNAB_0_BYTES.txt";
 	
 	@InjectMocks
 	private CnabFileServiceImpl service;
@@ -40,8 +41,8 @@ class CnabFileServiceImplTest {
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
-		this.loadFile();
-		this.loadByteZero();
+		dto = this.loadFile(CNAB_FILE_NAME);
+		dtoBytesZero = this.loadFile(CNAB_FILE_NAME_WITH_BYTES_ZERO);
 	}
 	
 	@Test
@@ -67,27 +68,17 @@ class CnabFileServiceImplTest {
 		});
 	}
 		
-	private void loadFile() {		
+	private CnabFileDTO loadFile(String cnabFileName) {		
 		try {			
-		    InputStream inputStream = CnabFileServiceImplTest.class.getResourceAsStream(CNAB_FILE_NAME);
-		    
-			MultipartFile conteudo = new MockMultipartFile(CNAB_FILE_NAME, inputStream.readAllBytes());
-			
-			dto = new CnabFileDTO(CNAB_FILE_NAME, conteudo, BYCODERSTEC);
+		    try (InputStream inputStream = new FileInputStream(cnabFileName)) {
+				MultipartFile conteudo = new MockMultipartFile(cnabFileName, inputStream.readAllBytes());
+				
+				return new CnabFileDTO(cnabFileName, conteudo, BYCODERSTEC);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
 		
-	private void loadByteZero() {
-		try {			
-		    InputStream inputStream = CnabFileServiceImplTest.class.getResourceAsStream(CNAB_FILE_NAME_WITH_BYTES_ZERO);
-		    
-			MultipartFile conteudo = new MockMultipartFile(CNAB_FILE_NAME_WITH_BYTES_ZERO, inputStream.readAllBytes());
-			
-			dtoBytesZero = new CnabFileDTO(CNAB_FILE_NAME_WITH_BYTES_ZERO, conteudo, BYCODERSTEC);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+		return null;
+	}	
 }
