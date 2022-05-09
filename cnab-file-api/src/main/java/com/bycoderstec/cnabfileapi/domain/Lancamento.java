@@ -51,12 +51,12 @@ public class Lancamento {
 	@NotNull
 	@ManyToOne(optional = false)
 	@JoinColumn(name="representante_loja")
-	private Representante representanteLoja;
+	private Representante representante;
 	
 	@NotNull	
 	@ManyToOne(optional = false)
 	@JoinColumn(name="nome_loja")
-	private Loja nomeLoja;
+	private Loja loja;
 		
 	public TipoTransacaoCnabEnum getTipoTransacao() {
 		return TipoTransacaoCnabEnum.toEnum(tipoTransacao);

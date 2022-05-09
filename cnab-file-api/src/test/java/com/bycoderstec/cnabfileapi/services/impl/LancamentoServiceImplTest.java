@@ -2,10 +2,8 @@ package com.bycoderstec.cnabfileapi.services.impl;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyCollection;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -70,17 +68,14 @@ class LancamentoServiceImplTest {
     
     @Mock
     private RepresentanteService representanteService;
-
-    @Mock
+    
     private Lancamento lancamento;
     
     private LancamentoDTO dto;
         
     private Loja loja;
-    
-    @Mock
+        
     private Representante representante;
-
 
     @BeforeEach
     void setUp() {
@@ -106,12 +101,12 @@ class LancamentoServiceImplTest {
         assertEquals(CPF, response.get(INDEX).getCpf());
         assertEquals(CARTAO, response.get(INDEX).getCartao());
         assertEquals(HORA, response.get(INDEX).getHora());
-        assertEquals(representante, response.get(INDEX).getRepresentanteLoja());
-        assertEquals(loja, response.get(INDEX).getNomeLoja());            	   
+        assertEquals(representante, response.get(INDEX).getRepresentante());
+        assertEquals(loja, response.get(INDEX).getLoja());            	   
     }
     
     @Test
-    void whenFindAllThenReturnAnListOfUsers() {
+    void whenFindAllThenReturnAnListOfLancamento() {
         when(repository.findAll()).thenReturn(List.of(lancamento));
 
         List<Lancamento> response = service.findAll();
@@ -127,8 +122,29 @@ class LancamentoServiceImplTest {
         assertEquals(CPF, response.get(INDEX).getCpf());
         assertEquals(CARTAO, response.get(INDEX).getCartao());
         assertEquals(HORA, response.get(INDEX).getHora());
-        assertEquals(representante, response.get(INDEX).getRepresentanteLoja());
-        assertEquals(loja, response.get(INDEX).getNomeLoja());    
+        assertEquals(representante, response.get(INDEX).getRepresentante());
+        assertEquals(loja, response.get(INDEX).getLoja());    
+    }
+    
+    @Test
+    void whenFindByLojaThenReturnAnListOfLancamento() {
+        when(repository.findByLoja(any())).thenReturn(List.of(lancamento));
+
+        List<Lancamento> response = service.findByLoja(loja);
+
+        assertNotNull(response);
+        assertEquals(1, response.size());
+        assertEquals(Lancamento.class, response.get(INDEX).getClass());
+      
+        assertEquals(ID, response.get(INDEX).getId());
+        assertEquals(TIPO_TRANSACAO, response.get(INDEX).getTipoTransacao().getCod());
+        assertEquals(DATA, response.get(INDEX).getData());
+        assertEquals(VALOR, response.get(INDEX).getValor());
+        assertEquals(CPF, response.get(INDEX).getCpf());
+        assertEquals(CARTAO, response.get(INDEX).getCartao());
+        assertEquals(HORA, response.get(INDEX).getHora());
+        assertEquals(representante, response.get(INDEX).getRepresentante());
+        assertEquals(loja, response.get(INDEX).getLoja());    
     }
     
     private void startLancamento() {

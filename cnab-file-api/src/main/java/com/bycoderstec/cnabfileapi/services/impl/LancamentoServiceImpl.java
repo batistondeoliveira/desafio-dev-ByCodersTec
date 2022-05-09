@@ -30,7 +30,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 	private LojaService lojaService;
 	
 	@Autowired
-	private RepresentanteService representanteService;		
+	private RepresentanteService representanteService;	
 	
 	private Lancamento fromDTO(LancamentoDTO dto) {	
 		Loja loja = lojaService.findByNomeOrCreate(dto.getNomeLoja());
@@ -38,8 +38,8 @@ public class LancamentoServiceImpl implements LancamentoService {
 		Representante representante = representanteService.findByNomeAndLojaOrCreate(dto.getRepresentanteLoja(), loja);
 		
 		Lancamento lancamento = mapper.map(dto, Lancamento.class);
-		lancamento.setRepresentanteLoja(representante);
-		lancamento.setNomeLoja(loja);
+		lancamento.setRepresentante(representante);
+		lancamento.setLoja(loja);
 		
 		return lancamento;
 	}
@@ -57,4 +57,9 @@ public class LancamentoServiceImpl implements LancamentoService {
 	public List<Lancamento> findAll() {	
 		return repository.findAll();
 	}
+
+	@Override
+	public List<Lancamento> findByLoja(Loja loja) {
+		return repository.findByLoja(loja);
+	}	
 }
