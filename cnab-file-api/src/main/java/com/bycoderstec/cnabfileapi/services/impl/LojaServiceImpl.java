@@ -1,5 +1,6 @@
 package com.bycoderstec.cnabfileapi.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,10 @@ public class LojaServiceImpl implements LojaService {
 		}
 		
 		return loja;
+	}
+	
+	@Override
+	public List<Loja> findAll() {
+		return repository.findAll();
 	}
 }
