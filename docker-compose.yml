@@ -48,6 +48,7 @@ services:
       SPRING.FLYWAY.URL: jdbc:mysql://cnab-file-db:3307/cnab_file?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
       SPRING.FLYWAY.USER: root
       SPRING.FLYWAY.PASSWORD: root
+      SERVER.PORT: 8000
     ports:
       - 8000:8000
     depends_on:
