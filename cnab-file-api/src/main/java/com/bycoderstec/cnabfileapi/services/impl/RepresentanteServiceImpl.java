@@ -47,4 +47,10 @@ public class RepresentanteServiceImpl implements RepresentanteService {
 	public List<Representante> findAll() {
 		return repository.findAll();
 	}
+	
+	@Override
+	public Representante findById(Integer id) {
+		Optional<Representante> obj = repository.findById(id);		
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+	}
 }
