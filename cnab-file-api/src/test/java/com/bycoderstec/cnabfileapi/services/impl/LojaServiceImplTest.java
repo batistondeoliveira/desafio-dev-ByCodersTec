@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +26,8 @@ class LojaServiceImplTest {
 	private static final int ID = 1;
 	
 	private static final String NOME_LOJA = "ByCodersTec";
+	
+	private static final Integer INDEX = 0;
 
 	@InjectMocks
     private LojaServiceImpl service;
@@ -81,6 +84,19 @@ class LojaServiceImplTest {
         }
     }
     
+    @Test
+    void whenFindAllThenReturnList() {
+    	when(repository.findAll()).thenReturn(List.of(loja));
+
+        List<Loja> response = service.findAll();
+
+        assertNotNull(response);
+        assertEquals(1, response.size());
+        assertEquals(ID, response.get(INDEX).getId());
+        assertEquals(NOME_LOJA, response.get(INDEX).getNome());
+    }
+    
+    @Test
     void whenFindByNomeOrCreateSuccess() {
     	when(repository.save(any())).thenReturn(loja);
 
