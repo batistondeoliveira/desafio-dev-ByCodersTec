@@ -1,0 +1,39 @@
+.cnab-result-container {  
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.cnab-card-bottom-result-container {
+  background-color: #fff;
+  padding: 10px 10px 20px 10px;
+  border-radius: 0 0 8px 8px;
+}
+
+table {
+  width: 100%
+}
+
+thead tr, tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+thead tr th {  
+  height: 40px;
+}
+
+tbody tr td, tfoot tr td {
+  height: 40px;
+}
+
+.header-loja th {
+  font-weight: normal;
+}
+
+.header-lancamento {
+  font-weight: 700;
+  text-align: center;
+}
+
+.lancamento-detalhamento {
+  font-weight: unset !important;
+}
