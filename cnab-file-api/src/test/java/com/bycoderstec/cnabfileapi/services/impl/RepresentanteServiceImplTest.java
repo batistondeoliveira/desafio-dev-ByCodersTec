@@ -2,9 +2,8 @@ package com.bycoderstec.cnabfileapi.services.impl;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -117,6 +116,32 @@ class RepresentanteServiceImplTest {
         assertEquals(REPRESENTANTE_LOJA, response.getNome());
         assertEquals(loja, response.getLoja());
     }
+    
+    @Test
+    void whenFindByIdThenReturnRepresentante() {
+        when(repository.findById(anyInt())).thenReturn(optionalRepresentante);
+
+        Representante response = service.findById(representante.getId());
+
+        assertNotNull(response);        
+        assertEquals(Representante.class, response.getClass());      
+        assertEquals(ID, response.getId());        
+        assertEquals(REPRESENTANTE_LOJA, response.getNome());
+        assertEquals(loja, response.getLoja());  
+    }
+    
+    @Test
+    void whenFindByIdThenReturnAnObjectNotFoundException() {    	
+        when(repository.findById(anyInt()))
+                .thenThrow(new ObjectNotFoundException(OBJETO_NAO_ENCONTRADO));
+
+        try{
+            service.findById(loja.getId());
+        } catch (Exception ex) {
+            assertEquals(ObjectNotFoundException.class, ex.getClass());
+            assertEquals(OBJETO_NAO_ENCONTRADO, ex.getMessage());
+        }
+    } 
     
     private void startRepresentante() {    	    	
     	loja = new Loja(ID_LOJA, NOME_LOJA);
