@@ -11,5 +11,5 @@ public interface RepresentanteService {
 	public Representante findByNomeAndLoja(String nome, Loja loja);
 	public Representante findByNomeAndLojaOrCreate(String nome, Loja loja);
 	public List<Representante> findAll();
-	Representante findById(Integer id);
+	public Representante findById(Integer id);
 }
