@@ -135,6 +135,7 @@ class CnabResourceTest {
         assertEquals(NOME_LOJA, response.getBody().getLoja().get(INDEX).getNome());        		
 		assertEquals(1, response.getBody().getLoja().get(INDEX).getLancamento().size());
 		assertEquals(VALOR, response.getBody().getLoja().get(INDEX).getSaldoPorLoja());
+		assertEquals(VALOR, response.getBody().getSaldoEmConta());
     }	
 	
 	private void loadFile() {

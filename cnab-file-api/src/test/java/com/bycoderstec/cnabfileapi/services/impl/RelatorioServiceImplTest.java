@@ -31,7 +31,7 @@ import com.bycoderstec.cnabfileapi.services.RepresentanteService;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
 @SpringBootTest
-public class RelatorioServiceImplTest {
+class RelatorioServiceImplTest {
 
 	private static final int ID = 1;
 
@@ -105,6 +105,7 @@ public class RelatorioServiceImplTest {
 		assertEquals(NOME_LOJA, response.getLoja().get(INDEX).getNome());
 		assertEquals(1, response.getLoja().get(INDEX).getLancamento().size());
 		assertEquals(VALOR, response.getLoja().get(INDEX).getSaldoPorLoja());
+		assertEquals(VALOR, response.getSaldoEmConta());
 	}
 	
 	private void startRelatorio() {
