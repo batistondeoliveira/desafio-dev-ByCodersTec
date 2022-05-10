@@ -4,8 +4,8 @@ import { zonedTimeToUtc } from 'date-fns-tz';
 
 function Table({ data }) {
   return (
-    <>
-      {data.map(loja => (
+    <>      
+      {data.loja.map(loja => (
         <table>
           <thead>
             <tr className="header-loja">
@@ -45,16 +45,25 @@ function Table({ data }) {
                   <tfoot>
                     <tr>
                       <td colSpan={5} />
-                      <td style={{fontWeight: 'bold', textAlign: 'right'}}>Saldo:</td>
-                      <td style={{textAlign: 'right'}}>{ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(loja.saldoEmConta) }</td>
+                      <td style={{fontWeight: 'bold', textAlign: 'right'}}>Total:</td>
+                      <td style={{textAlign: 'right'}}>{ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(loja.saldoPorLoja) }</td>
                     </tr>
                   </tfoot>
                 </table>          
               </td>
             </tr>
-          </tbody>
-        </table>
+          </tbody>          
+        </table>          
       ))}
+
+      <div className="saldo-container">
+        <div className="saldo-label">
+          Saldo em conta: 
+        </div>
+        <div className="saldo-valor">
+          { new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(data.saldoEmConta) }
+        </div>
+      </div>
     </>    
   )
 }

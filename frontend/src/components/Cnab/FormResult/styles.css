@@ -37,3 +37,23 @@ tbody tr td, tfoot tr td {
 .lancamento-detalhamento {
   font-weight: unset !important;
 }
+
+.saldo-container {
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  line-height: 40px;
+}
+
+.saldo-label {
+  text-align: right;
+  font-weight: 700;
+  width: 87.2%;
+  height: 40px;
+}
+
+.saldo-valor {
+  text-align: right;
+  width: 12.8%;
+  height: 40px;
+}
