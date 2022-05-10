@@ -14,6 +14,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cnab-file-api</name>
 	<description>Api de processamento de arquivo cnab</description>
+	<packaging>war</packaging>
 	<properties>
 		<java.version>17</java.version>		
 	</properties>
