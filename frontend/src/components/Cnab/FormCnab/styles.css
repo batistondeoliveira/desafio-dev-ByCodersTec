@@ -47,3 +47,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.form-control.input-file {
+  padding: 5px;
+  display: flex;  
+}
+
+.form-control.input-file span {
+  line-height: 40px;
+  margin-left: 10px
+}

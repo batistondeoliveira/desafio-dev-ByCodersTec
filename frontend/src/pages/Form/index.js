@@ -9,7 +9,7 @@ function Form() {
       <div className="container">
         <div className="row">
             {!processado
-              ? <FormCnab callback={(data, processado) => {setData(data); setProcessado(processado)}} />
+              ? <FormCnab callback={(data) => {setData(data); setProcessado(true)}} />
               : <FormResult data={data} callback={() => {setData([]); setProcessado(false)}} />
             }            
         </div>
