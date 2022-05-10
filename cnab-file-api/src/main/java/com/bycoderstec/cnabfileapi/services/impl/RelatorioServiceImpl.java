@@ -1,7 +1,6 @@
 package com.bycoderstec.cnabfileapi.services.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +40,17 @@ public class RelatorioServiceImpl implements RelatorioService {
 		
 		return lancamentoRelatorioDTO;
 	}
-	
+		
 	private LojaRelatorioDTO prepareRelatorio(Loja loja) {	
 		LojaRelatorioDTO lojaRelatorioDTO = mapper.map(loja, LojaRelatorioDTO.class);		
 						
 		List<LancamentoRelatorioDTO> lancamentoRelatorioDTO = lancamentoService.findByLoja(loja).stream()
-				.map(lancamento -> fromLancamento(lancamento))				
-				.collect(Collectors.toList());		
+				.map(this::fromLancamento)				
+				.toList();		
 		
 		lojaRelatorioDTO.setLancamento(lancamentoRelatorioDTO);
 		
-		Double saldoPorLoja = lancamentoRelatorioDTO.stream().mapToDouble(dto -> dto.getValor()).sum();
+		Double saldoPorLoja = lancamentoRelatorioDTO.stream().mapToDouble(LancamentoRelatorioDTO::getValor).sum();
 		
 		lojaRelatorioDTO.setSaldoPorLoja(saldoPorLoja);
 		
@@ -63,8 +62,8 @@ public class RelatorioServiceImpl implements RelatorioService {
 		List<Loja> lista = lojaService.findAll();		
 				
 		return new RelatorioDTO(lista.stream()
-			.map(loja -> prepareRelatorio(loja))
-			.collect(Collectors.toList())
+			.map(this::prepareRelatorio)
+			.toList()
 		);
 	}
 }
