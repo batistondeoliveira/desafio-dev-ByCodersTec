@@ -8,10 +8,12 @@ Como executar a aplicação
 
 **Passo 2:** Após o passo 2, execute **docker-compose up -d** para subir todos os containers do projeto.
 
+**Atenção:** O nginx está programado para responder na porta 8080. Caso a porta 8080 da sua máquina esteja ocupada com outra aplicação, antes de subir os containers, favor mudar a porta do container nginx.
+
 # Documentação da API
 
 1. __Documentação da API:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
-2. __Documentação Visual da API:__ [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
+2. __Documentação Visual da API:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
 
 # Como acessar o sistema
 
@@ -19,8 +21,8 @@ Como executar a aplicação
 2. __BackEnd:__ [http://localhost:8080/cnab-backend](http://localhost:8080/cnab-backend)
 3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube)
 4. __h2-console:__ [http://localhost:8080/h2-console (Somente no profile de test)](http://localhost:8080/h2-console)
-5. __Documentação da API:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
-6. __Documentação Visual:__ [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
+5. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
+6. __Documentação Swagger-UI:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
 7. __Arquivo do Postman:__ Arquivo do postman para importar e consumir a api. Basta selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt. [O arquivo pode ser baixado aqui](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json)
 
 # Como consumir a API
@@ -39,7 +41,8 @@ No git push, o sistema irá executar todos os testes antes de dar push na branch
 
 Ao meu ver, usando essa abordagem, ganhamos na padronização e qualidade do código. 
 
-**OBS:** Não achei nenhuma ferramenta em java que faça o mesmo, caso exista por favor, na devolutiva me de o feedback :)
+**PS:** Não achei nenhuma ferramenta em java que faça o mesmo, caso exista por favor, na devolutiva me de o feedback :)
+**Atenção:** Caso queira fazer alterações no fonte e dar commits, é necessário que o container do sonarqube esteja no ar pois a aplicação está configurada para verificar a qualidade do código e gravar os dados no sonarqube. (Essa validação só acontecerá, caso o npm install tenha sido executado, vide seção "Preparando o ambiente de desenvolvimento" para mais detalhes).
 
 # Ferramentas utilizadas
 
