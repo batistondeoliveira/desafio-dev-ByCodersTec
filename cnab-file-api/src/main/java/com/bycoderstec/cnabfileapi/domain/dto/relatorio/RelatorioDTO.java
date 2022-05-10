@@ -13,4 +13,17 @@ import lombok.Setter;
 public class RelatorioDTO {
 
 	private List<LojaRelatorioDTO> loja;	
+	private Double saldoEmConta;
+	
+	public RelatorioDTO(List<LojaRelatorioDTO> loja) {	
+		this.setLoja(loja);		
+	}	
+	
+	public void setLoja(List<LojaRelatorioDTO> loja) {
+		this.loja = loja;
+		
+		if (loja != null) {
+			this.saldoEmConta = loja.stream().mapToDouble(LojaRelatorioDTO::getSaldoPorLoja).sum();
+		}
+	}
 }
