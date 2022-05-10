@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "de7a5afa-1e50-47c4-bb1e-5bbb67422ad9",
+		"name": "Cnab Receive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "cnab",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user",
+							"value": "bycoderstec",
+							"type": "default"
+						},
+						{
+							"key": "filename",
+							"value": "cnab.txt",
+							"type": "default"
+						},
+						{
+							"key": "conteudo",
+							"type": "file",
+							"src": "/home/eliel/repositorio/desafio-dev-ByCodersTec/CNAB.txt"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cnab-backend/cnab",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cnab-backend",
+						"cnab"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
