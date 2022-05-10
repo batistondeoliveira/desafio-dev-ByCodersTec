@@ -104,7 +104,7 @@ public class RelatorioServiceImplTest {
 		assertEquals(RelatorioDTO.class, response.getClass());				
 		assertEquals(NOME_LOJA, response.getLoja().get(INDEX).getNome());
 		assertEquals(1, response.getLoja().get(INDEX).getLancamento().size());
-		assertEquals(VALOR, response.getLoja().get(INDEX).getSaldoEmConta());
+		assertEquals(VALOR, response.getLoja().get(INDEX).getSaldoPorLoja());
 	}
 	
 	private void startRelatorio() {

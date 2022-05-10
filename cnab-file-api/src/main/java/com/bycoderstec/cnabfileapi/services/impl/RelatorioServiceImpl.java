@@ -51,9 +51,9 @@ public class RelatorioServiceImpl implements RelatorioService {
 		
 		lojaRelatorioDTO.setLancamento(lancamentoRelatorioDTO);
 		
-		Double saldoEmConta = lancamentoRelatorioDTO.stream().mapToDouble(dto -> dto.getValor()).sum();
+		Double saldoPorLoja = lancamentoRelatorioDTO.stream().mapToDouble(dto -> dto.getValor()).sum();
 		
-		lojaRelatorioDTO.setSaldoEmConta(saldoEmConta);
+		lojaRelatorioDTO.setSaldoPorLoja(saldoPorLoja);
 		
 		return lojaRelatorioDTO;
 	}

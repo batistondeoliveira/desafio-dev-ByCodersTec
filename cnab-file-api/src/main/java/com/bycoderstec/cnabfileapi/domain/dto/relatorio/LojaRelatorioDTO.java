@@ -14,5 +14,5 @@ public class LojaRelatorioDTO {
 
 	private String nome;	
 	private List<LancamentoRelatorioDTO> lancamento;
-	private Double saldoEmConta;
+	private Double saldoPorLoja;
 }
