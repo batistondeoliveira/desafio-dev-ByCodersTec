@@ -52,7 +52,7 @@ function FormCnab({ callback }) {
         preload: false,        
       });
 
-      callback(response.data.loja);
+      callback(response.data);
     });    
   }
   
