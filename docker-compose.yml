@@ -1,6 +1,18 @@
 version: '3.4'
 
 services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx
+    container_name: nginx
+    networks:
+      - bycoderstec
+    tty: true
+    ports:
+      - 8080:80
+
   cnab-file-db:
     image: mysql:latest
     container_name: cnab-file-db
@@ -21,7 +33,7 @@ services:
     networks:
       - bycoderstec
       
-  sonarque:
+  sonarqube:
     image: sonarqube:8.9-community
     container_name: sonarqube
     ports:
@@ -33,13 +45,13 @@ services:
     networks:
       - bycoderstec  
 
-  cnab-file-api:
+  cnab-backend:
     build:
       context: ./cnab-file-api
       dockerfile: Dockerfile
-    image: cnab-file-api
+    image: cnab-backend
     restart: always
-    container_name: cnab-file-api
+    container_name: cnab-backend
     environment:
       TZ: America/Sao_Paulo
       SPRING.DATASOURCE.URL: jdbc:mysql://cnab-file-db:3307/cnab_file?useSSL=false&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
@@ -54,8 +66,22 @@ services:
     depends_on:
       - cnab-file-db
     networks:
+      - bycoderstec      
+  
+  cnab-frontend:
+    build:
+      context: ./frontend  
+    container_name: cnab-frontend  
+    environment:
+      REACT_APP_API_BASE: http://nginx:8080/cnab-backend
+    networks:
       - bycoderstec
-      
+    volumes:
+      - ./frontend:/usr/src/app
+    tty: true
+    ports: 
+      - 3000:3000
+
 networks:
   bycoderstec:
     driver: bridge 
