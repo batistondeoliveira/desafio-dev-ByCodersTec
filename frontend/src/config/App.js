@@ -1,1 +1,1 @@
-export const apiUrl = `${process.env.REACT_APP_API_BASE}/cnab-backed/`;
+export const apiUrl = `${process.env.REACT_APP_API_BASE}/cnab-backend/`;
