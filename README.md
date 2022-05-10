@@ -1,5 +1,73 @@
 # Desafio programação - para vaga desenvolvedor
 
+
+Como executar a aplicação
+------------
+
+**Passo 1:** Faça o clone do projeto no diretório de sua preferência. 
+
+**Passo 2:** Após o passo 2, execute **docker-compose up -d** para subir todos os containers do projeto.
+
+# Documentação da API
+
+1. __Documentação da API:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
+2. __Documentação Visual da API:__ [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
+
+# Como acessar o sistema
+
+1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend)
+2. __BackEnd:__ [http://localhost:8080/cnab-backend](http://localhost:8080/cnab-backend)
+3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube)
+4. __h2-console:__ [http://localhost:8080/h2-console (Somente no profile de test)](http://localhost:8080/h2-console)
+5. __Documentação da API:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
+6. __Documentação Visual:__ [http://localhost:8080/swagger-ui](http://localhost:8080/swagger-ui)
+7. __Arquivo do Postman:__ Arquivo do postman para importar e consumir a api. Basta selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt. [O arquivo pode ser baixado aqui](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json)
+
+# Como consumir a API
+
+A api só tem um endpoint e o endereço é [http://localhost:8080/cnab-backend/cnab](http://localhost:8080/cnab-backend/cnab).
+Na documentação do swagger está descrito como consumir a API e no [arquivo do postman](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json), você pode baixá-lo e importá-lo no postman e selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt
+
+# Preparando o ambiente de desenvolvimento
+
+Para o ambiente de desenvolvimento, foram utilizadas bibliotecas do npm para configurar um hook de pre-commit (vide detalhes na seção ferramentas utilizadas).
+Por conta disso, é interessante **instalar o node** e executar o comando **npm install** para instalar as bibliotecas. Assim, ao executar o comando git commit -m, o sistema irá validar a mensagem do commit de acordo com os padrões do **conventional commits** e também analisar a **qualidade do código** com o sonar automaticamente, evitando commits defeituosos.
+No git push, o sistema irá executar todos os testes antes de dar push na branch, evitando assim subir versões com bugs.
+
+**Contra:** Contra essa abordagem é a necessidade de instalar o node na máquina.
+**Prós:** Padronização dos commits e validação da qualidade do código evitando commits defeituosos.
+
+Ao meu ver, usando essa abordagem, ganhamos na padronização e qualidade do código. 
+
+**OBS:** Não achei nenhuma ferramenta em java que faça o mesmo, caso exista por favor, na devolutiva me de o feedback :)
+
+# Ferramentas utilizadas
+
+- **@commitlint/config-conventional, @commitlint/cli e husky:** Essas bibliotecas foram adicionadas para configurar a ação de pre-commit onde ao executar o git commit -m "mensagem", o sistema irá validar se a mensagem digitada pelo usuário está no padrão do conventional commits. Além disso, também tenho um hook para verificar a qualidade do código com o sonar. Portanto, toda vez que executar o git commit, antes de executar a ação do commit, automaticamente será validado a qualidade do código e também validado se a mensagem do usuário está no padrão do conventional commits. Assim, evito subir commits defeituosos para o servidor.
+
+- **sonarqube:** Foi adicionado um submodulo do projeto do desafio-dev-ByCodersTec para armazenar as analises da qualidade do software para depois vocês verificarem. Para isso, após subir os containers, acesse o [sonarqube no link http:localhost:8080/sonarqube](http:localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bydecoderstec** respectivamente.
+
+- **spring-boot-devtools:** Foi adicionado a biblioteca spring-boot-devtools para ter o **live reload** ao alterar os arquivos fontes. Com isso, ganhamos em **produtividade** e não precisamos ficar buildando a aplicação, baixando e subindo o container toda vez que a aplicação mudar.
+
+***Caso queira testar o live reload dentro do container, faça uma nova "Launch Configuration" conforme descrito abaixo:***
+
+## Nova "Lauch Configuration"
+Criar uma nova "Launch Configuration" para inicializar o sistema: **Menu - Run > Run Configurations.** Crie uma nova entrada para Java Application, informando os seguintes detalhes:
+
+**Página Main:**
+```
+Name: remote-cnab-file-api
+Project: cnab-receive-service
+Main class: org.springframework.boot.devtools.RemoteSpringApplication
+```
+
+**Página Arguments:**
+```
+Program arguments: http://localhost:8080/cnab-backend
+```
+
+# Desafio programação - para vaga desenvolvedor
+
 Por favor leiam este documento do começo ao fim, com muita atenção.
 O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
 O teste consiste em parsear [este arquivo de texto(CNAB)](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
