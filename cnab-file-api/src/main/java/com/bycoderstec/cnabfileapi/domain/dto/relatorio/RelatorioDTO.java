@@ -12,5 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RelatorioDTO {
 
-	List<LojaRelatorioDTO> loja;
+	private List<LojaRelatorioDTO> loja;	
 }
