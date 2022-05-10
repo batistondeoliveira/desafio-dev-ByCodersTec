@@ -1,6 +1,6 @@
 import Axios from 'axios';
-import { rootUrl } from './App';
+import { apiUrl } from './App';
 
 export const Http = Axios.create({
-    baseURL: rootUrl
+    baseURL: apiUrl
 });
