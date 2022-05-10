@@ -15,6 +15,10 @@ import com.bycoderstec.cnabfileapi.services.CnabFileService;
 import com.bycoderstec.cnabfileapi.services.LancamentoService;
 import com.bycoderstec.cnabfileapi.services.RelatorioService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "CnabResource")
 @RestController
 @RequestMapping("/cnab")
 public class CnabResource {
@@ -28,6 +32,7 @@ public class CnabResource {
 	@Autowired
 	private RelatorioService relatorioService;
 	
+	@Operation(summary = "Processa o arquivo CNAB e devolve o relatório")
 	@PostMapping
 	public ResponseEntity<RelatorioDTO> receiveCnabFile(CnabFileDTO dtoObj) {
 		List<LancamentoDTO> listaLancamentoDTO = cnabFileService.processaCnabFile(dtoObj);
