@@ -17,13 +17,12 @@ Como executar a aplicação
 
 # Como acessar o sistema
 
-1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend)
+1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend) **OBS:** Por ser uma tela de exemplo para consumir a api, não deixei o layout responsivo.
 2. __BackEnd:__ [http://localhost:8080/cnab-backend](http://localhost:8080/cnab-backend)
 3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bycoderstec** respectivamente.
-4. __h2-console:__ [http://localhost:8080/h2-console (Somente no profile de test)](http://localhost:8080/h2-console)
-5. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/docs/v3/api-docs](http://localhost:8080/cnab-backend/docs/v3/api-docs)
-6. __Documentação Swagger-UI:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
-7. __Arquivo do Postman:__ Arquivo do postman para importar e consumir a api. Basta selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt. [O arquivo pode ser baixado aqui](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json)
+4. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/docs/v3/api-docs](http://localhost:8080/cnab-backend/docs/v3/api-docs)
+5. __Documentação Swagger-UI:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
+6. __Arquivo do Postman:__ Arquivo do postman para importar e consumir a api. Basta selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt. [O arquivo pode ser baixado aqui](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json)
 
 # Como consumir a API
 
