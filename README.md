@@ -6,22 +6,22 @@ Como executar a aplicação
 
 **Passo 1:** Faça o clone do projeto no diretório de sua preferência. 
 
-**Passo 2:** Após o passo 2, execute **docker-compose up -d** para subir todos os containers do projeto.
+**Passo 2:** Vá para o terminal e digite **docker-compose up -d** em seguinta aperte a tecla enter para subir todos os containers do projeto.
 
-**Atenção:** O nginx está programado para responder na porta 8080. Caso a porta 8080 da sua máquina esteja ocupada com outra aplicação, antes de subir os containers, favor mudar a porta do container nginx.
+**Atenção:** O nginx está programado para responder na porta 8080. Caso a porta 8080 da sua máquina esteja ocupada com outra aplicação, antes de subir os containers, favor editar o docker-compose.yml e mudar a porta do container nginx.
 
 # Documentação da API
 
-1. __Documentação da API:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
+1. __Documentação da API:__ [http://localhost:8080/cnab-backend/docs/v3/api-docs](http://localhost:8080/cnab-backend/docs/v3/api-docs)
 2. __Documentação Visual da API:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
 
 # Como acessar o sistema
 
 1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend)
 2. __BackEnd:__ [http://localhost:8080/cnab-backend](http://localhost:8080/cnab-backend)
-3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube)
+3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bydecoderstec** respectivamente.
 4. __h2-console:__ [http://localhost:8080/h2-console (Somente no profile de test)](http://localhost:8080/h2-console)
-5. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/v3/api-docs](http://localhost:8080/cnab-backend/v3/api-docs)
+5. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/docs/v3/api-docs](http://localhost:8080/cnab-backend/docs/v3/api-docs)
 6. __Documentação Swagger-UI:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
 7. __Arquivo do Postman:__ Arquivo do postman para importar e consumir a api. Basta selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt. [O arquivo pode ser baixado aqui](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json)
 
@@ -32,7 +32,7 @@ Na documentação do swagger está descrito como consumir a API e no [arquivo do
 
 # Preparando o ambiente de desenvolvimento
 
-Para o ambiente de desenvolvimento, foram utilizadas bibliotecas do npm para configurar um hook de pre-commit (vide detalhes na seção ferramentas utilizadas).
+Para o ambiente de desenvolvimento, foram utilizadas bibliotecas do npm para configurar três hooks que são: pre-commit, commit-msg e pre-push (vide detalhes na seção ferramentas utilizadas).
 Por conta disso, é interessante **instalar o node** e executar o comando **npm install** para instalar as bibliotecas. Assim, ao executar o comando git commit -m, o sistema irá validar a mensagem do commit de acordo com os padrões do **conventional commits** e também analisar a **qualidade do código** com o sonar automaticamente, evitando commits defeituosos.
 No git push, o sistema irá executar todos os testes antes de dar push na branch, evitando assim subir versões com bugs.
 
@@ -42,11 +42,13 @@ No git push, o sistema irá executar todos os testes antes de dar push na branch
 Ao meu ver, usando essa abordagem, ganhamos na padronização e qualidade do código. 
 
 **PS:** Não achei nenhuma ferramenta em java que faça o mesmo, caso exista por favor, na devolutiva me de o feedback :)
+
 **Atenção:** Caso queira fazer alterações no fonte e dar commits, é necessário que o container do sonarqube esteja no ar pois a aplicação está configurada para verificar a qualidade do código e gravar os dados no sonarqube. (Essa validação só acontecerá, caso o npm install tenha sido executado, vide seção "Preparando o ambiente de desenvolvimento" para mais detalhes).
 
 # Ferramentas utilizadas
 
-- **@commitlint/config-conventional, @commitlint/cli e husky:** Essas bibliotecas foram adicionadas para configurar a ação de pre-commit onde ao executar o git commit -m "mensagem", o sistema irá validar se a mensagem digitada pelo usuário está no padrão do conventional commits. Além disso, também tenho um hook para verificar a qualidade do código com o sonar. Portanto, toda vez que executar o git commit, antes de executar a ação do commit, automaticamente será validado a qualidade do código e também validado se a mensagem do usuário está no padrão do conventional commits. Assim, evito subir commits defeituosos para o servidor.
+- **@commitlint/config-conventional, @commitlint/cli e husky:** Essas bibliotecas foram adicionadas para configurar a ação de pre-commit onde ao executar o git commit -m "mensagem", o sistema irá validar se a mensagem digitada pelo usuário está no padrão do conventional commits. Além disso, também tenho um hook para verificar a qualidade do código com o sonar. Portanto, toda vez que executar o git commit, antes de executar a ação do commit, automaticamente será validado a qualidade do código (hook pre-commit) e também validado se a mensagem do usuário (hook commit-msg) está no padrão do conventional commits. Assim, evito subir commits defeituosos para o servidor.
+No git push, o sistema irá executar automaticamente, os testes do sistema (hook pre-push) evitando subir commits com bugs.
 
 - **sonarqube:** Foi adicionado um submodulo do projeto do desafio-dev-ByCodersTec para armazenar as analises da qualidade do software para depois vocês verificarem. Para isso, após subir os containers, acesse o [sonarqube no link http:localhost:8080/sonarqube](http:localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bydecoderstec** respectivamente.
 
@@ -60,13 +62,13 @@ Criar uma nova "Launch Configuration" para inicializar o sistema: **Menu - Run >
 **Página Main:**
 ```
 Name: remote-cnab-file-api
-Project: cnab-receive-service
+Project: cnab-file-api
 Main class: org.springframework.boot.devtools.RemoteSpringApplication
 ```
 
 **Página Arguments:**
 ```
-Program arguments: http://localhost:8080/cnab-backend
+Program arguments: http://localhost:8000/cnab-backend
 ```
 
 # Desafio programação - para vaga desenvolvedor
