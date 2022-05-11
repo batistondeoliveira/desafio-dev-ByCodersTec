@@ -19,7 +19,7 @@ Como executar a aplicação
 
 1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend)
 2. __BackEnd:__ [http://localhost:8080/cnab-backend](http://localhost:8080/cnab-backend)
-3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bydecoderstec** respectivamente.
+3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bycoderstec** respectivamente.
 4. __h2-console:__ [http://localhost:8080/h2-console (Somente no profile de test)](http://localhost:8080/h2-console)
 5. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/docs/v3/api-docs](http://localhost:8080/cnab-backend/docs/v3/api-docs)
 6. __Documentação Swagger-UI:__ [http://localhost:8080/cnab-backend/swagger-ui.html](http://localhost:8080/cnab-backend/swagger-ui.html)
@@ -50,7 +50,7 @@ Ao meu ver, usando essa abordagem, ganhamos na padronização e qualidade do có
 - **@commitlint/config-conventional, @commitlint/cli e husky:** Essas bibliotecas foram adicionadas para configurar a ação de pre-commit onde ao executar o git commit -m "mensagem", o sistema irá validar se a mensagem digitada pelo usuário está no padrão do conventional commits. Além disso, também tenho um hook para verificar a qualidade do código com o sonar. Portanto, toda vez que executar o git commit, antes de executar a ação do commit, automaticamente será validado a qualidade do código (hook pre-commit) e também validado se a mensagem do usuário (hook commit-msg) está no padrão do conventional commits. Assim, evito subir commits defeituosos para o servidor.
 No git push, o sistema irá executar automaticamente, os testes do sistema (hook pre-push) evitando subir commits com bugs.
 
-- **sonarqube:** Foi adicionado um submodulo do projeto do desafio-dev-ByCodersTec para armazenar as analises da qualidade do software para depois vocês verificarem. Para isso, após subir os containers, acesse o [sonarqube no link http:localhost:8080/sonarqube](http:localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bydecoderstec** respectivamente.
+- **sonarqube:** Foi adicionado um submodulo do projeto do desafio-dev-ByCodersTec para armazenar as analises da qualidade do software para depois vocês verificarem. Para isso, após subir os containers, acesse o [sonarqube no link http:localhost:8080/sonarqube](http:localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bycoderstec** respectivamente.
 
 - **spring-boot-devtools:** Foi adicionado a biblioteca spring-boot-devtools para ter o **live reload** ao alterar os arquivos fontes. Com isso, ganhamos em **produtividade** e não precisamos ficar buildando a aplicação, baixando e subindo o container toda vez que a aplicação mudar.
 
