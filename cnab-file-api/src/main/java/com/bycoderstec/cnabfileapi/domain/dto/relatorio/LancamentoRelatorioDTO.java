@@ -23,8 +23,8 @@ public class LancamentoRelatorioDTO {
 	private String hora;
 	private String representanteLoja;	
 	
-	public TipoTransacaoCnabEnum getTipoTransacao() {
-		return TipoTransacaoCnabEnum.toEnum(tipoTransacao);
+	public String getTipoTransacao() {
+		return TipoTransacaoCnabEnum.toEnum(tipoTransacao).getDescricao();
 	}
 
 	public void setTipoTransacao(TipoTransacaoCnabEnum tipoTransacao) {
