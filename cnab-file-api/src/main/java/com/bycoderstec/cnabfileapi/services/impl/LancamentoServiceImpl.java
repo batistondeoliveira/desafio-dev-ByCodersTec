@@ -1,7 +1,7 @@
 package com.bycoderstec.cnabfileapi.services.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +47,8 @@ public class LancamentoServiceImpl implements LancamentoService {
 	@Transactional
 	@Override
 	public List<Lancamento> createAll(List<LancamentoDTO> lista) {
-		List<Lancamento> listaLancamento = lista.stream().map(dto -> fromDTO(dto))
-			.collect(Collectors.toList());
+		Stream<Lancamento> listaLancamentoStream = lista.stream().map(this::fromDTO);
+		List<Lancamento> listaLancamento = listaLancamentoStream.toList();
 				
 		return repository.saveAll(listaLancamento);
 	}

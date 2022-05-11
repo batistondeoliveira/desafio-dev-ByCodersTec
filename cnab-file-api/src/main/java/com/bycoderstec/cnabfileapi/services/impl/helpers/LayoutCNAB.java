@@ -6,8 +6,12 @@ import java.time.format.DateTimeFormatter;
 import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.services.impl.helpers.enums.TipoTransacaoCnabEnum;
 
-public class LayoutCNAB {
+public final class LayoutCNAB {
 	private static String linha;
+	
+	private LayoutCNAB() {
+		throw new UnsupportedOperationException("Essa classe não pode ser instanciada");
+	}
 	
 	private static Integer getTipo() {		
 		return Integer.parseInt(LayoutCNAB.linha.substring(0, 1));

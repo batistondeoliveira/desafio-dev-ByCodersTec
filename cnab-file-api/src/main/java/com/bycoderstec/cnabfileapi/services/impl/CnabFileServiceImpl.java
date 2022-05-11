@@ -24,7 +24,7 @@ public class CnabFileServiceImpl implements CnabFileService {
 	private List<LancamentoDTO> fromMultipartFile(MultipartFile file) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
 		String linha = "";
-		List<LancamentoDTO> lista = new ArrayList<LancamentoDTO>();
+		List<LancamentoDTO> lista = new ArrayList<>();
 		
 		while((linha = reader.readLine()) != null) {
 			lista.add(LayoutCNAB.convertToLancamento(linha));
@@ -43,8 +43,7 @@ public class CnabFileServiceImpl implements CnabFileService {
 			
 			return this.fromMultipartFile(dto.getConteudo());		
 		} catch (IOException e) {
-			log.error("Erro ao ler arquivo CNAB. Mensagem");	
-			e.printStackTrace();
+			log.error("Erro ao ler arquivo CNAB. Mensagem");			
 			throw new FileException("Erro ao ler arquivo CNAB");			
 		}
 	}
