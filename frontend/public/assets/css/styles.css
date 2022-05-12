@@ -59,6 +59,9 @@ ul {
 .header-top-container a {
   color: #fff;
 }
+.header-top-container a:hover {
+  color: #02BE3B;
+}
 
 .main-header-container {
   max-width: 1170px;
@@ -160,7 +163,7 @@ ul {
 }
 .app-grid-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 2rem 0;
 }
 @media (max-width: 425px) {
@@ -172,40 +175,64 @@ ul {
 .app-grid-container .app-grid-card {
   border: 1px solid #b9babc;
   position: relative;
-  width: 20%;
+  width: 38%;
   padding: 1rem;
   transition: 0.4s;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.app-grid-container .app-grid-card .label {
-  text-transform: uppercase;
-  border: 1px solid #02BE3B;
-  color: #02BE3B;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 2px 6px;
+  box-shadow: 2px 2px 2px #b9babc;
 }
 .app-grid-container .app-grid-card .btn {
   margin-bottom: 1rem;
   padding: 8px 15px;
   height: 40px;
-  color: #ffffff;
+  color: #fff;
   border-radius: 20px;
   font-weight: bold;
   text-transform: uppercase;
   background-color: #02BE3B;
   cursor: pointer;
-  outline: none;
   border: 2px solid #02BE3B;
   transation: 0.4s;
 }
-.app-grid-container:hover {
+.app-grid-container .app-grid-card .btn:hover {
   background-color: unset;
   color: #02BE3B;
+}
+.app-grid-container .app-grid-card .app-grid-form {
+  width: calc(100% - 20px);
+}
+.app-grid-container .app-grid-card .app-grid-form-input label {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.app-grid-container .app-grid-card .app-grid-form-input .form-control {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.app-grid-container .app-grid-card .app-grid-form-input .form-control:hover .btn, .app-grid-container .app-grid-card .app-grid-form-input .form-control:hover span {
+  background-color: unset;
+  color: #BC383B;
+  cursor: pointer;
+}
+.app-grid-container .app-grid-card .app-grid-form-input .form-control .btn {
+  margin-bottom: unset;
+  border-radius: unset;
+}
+.app-grid-container .app-grid-card .app-grid-form-input .form-control .btn-danger {
+  background-color: #BC383B;
+  border-color: #BC383B;
+}
+.app-grid-container .app-grid-card .app-grid-form-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.app-grid-container .app-grid-card .app-grid-form-button .btn {
+  margin-bottom: unset;
+  width: 180px;
 }
 
 .footer {
