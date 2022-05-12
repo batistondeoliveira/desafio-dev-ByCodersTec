@@ -27,7 +27,33 @@
 
         &:hover
           color: variables.$primary-color
-          
+
+  &-bottom
+    background-color: variables.$light-color
+    border-bottom: 2px solid variables.$section-bg-color
+    border-top: 3px solid variables.$primary-color
+
+    ul
+      @include layouts-mixins.center-content
+      justify-content: left
+      padding: 1rem 0
+
+      @include base-mixins.mobile
+        display: none
+
+      li
+        margin-right: 1.3rem
+        color: variables.$link-color
+        border-bottom: 2px solid transparent
+        cursor: pointer
+
+        &:hover
+          color: variables.$primary-color
+          border-color: variables.$primary-color
+
+        &.active          
+          border-color: variables.$primary-color
+
 .main-header
   &-container
     @include layouts-mixins.center-content
@@ -57,28 +83,4 @@
         @include layouts-mixins.header-icon
 
         @include base-mixins.mobile
-          margin: 1rem
-                    
-.header-bottom
-  background-color: variables.$light-color
-  border-bottom: 2px solid variables.$section-bg-color
-  border-top: 3px solid variables.$primary-color
-
-  ul
-    @include layouts-mixins.center-content
-    justify-content: left
-    padding: 1rem 0
-
-    @include base-mixins.mobile
-      display: none
-
-    li
-      margin-right: 1.3rem
-
-      a
-        color: variables.$link-color
-        border-bottom: 2px solid transparent
-
-        &:hover
-          color: variables.$primary-color
-          border-color: variables.$primary-color
+          margin: 1rem                  
