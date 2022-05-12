@@ -6,21 +6,18 @@ import {
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ImportarCNAB from "./pages/ImportarCNAB";
+import RelatorioFinanceiro from "./pages/RelatorioFinanceiro";
 
-function App() {
-  return (
-    <>
-      <Navbar />
-              
-      <BrowserRouter basename="/cnab-frontend">        
-        <Routes>
-          <Route path="/" element={<ImportarCNAB />} />        
-        </Routes>
-      </BrowserRouter>      
-
-      <Footer />
-    </>
-  );
-}
+const App = () =>
+  <BrowserRouter basename="/cnab-frontend">        
+    <Navbar />
+    
+    <Routes>      
+      <Route path="/" element={<ImportarCNAB />} />
+      <Route path="/relatorio" element={<RelatorioFinanceiro />} />
+    </Routes>
+    
+    <Footer />
+  </BrowserRouter>            
 
 export default App;
