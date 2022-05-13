@@ -1,10 +1,10 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const HeaderBottom = () => {
   const menu = [    
     {name: "Importar", link: "/"}, 
-    {name: "Relatório", link: "/relatorio"}
+    {name: "Relatório", link: "/relatorio"}    
   ];
 
   const [activeIndex, setActiveIndex] = React.useState(0);
