@@ -37,26 +37,12 @@
       align-items: center
       box-shadow: 2px 2px 2px variables.$border-color
       
+      &.mini
+        width: 40%
+        
       p
         font-size: 2rem
-        font-weight: 700
-        
-      .btn 
-        margin-bottom: 1rem 
-        padding: 8px 15px
-        height: 40px
-        color: variables.$light-color
-        border-radius: 20px
-        font-weight: bold
-        text-transform: uppercase
-        background-color: variables.$primary-color
-        cursor: pointer        
-        border: 2px solid variables.$primary-color
-        transation: 0.4s
-
-        &:hover
-          background-color: unset
-          color: variables.$primary-color
+        font-weight: 700      
 
       .app-grid-form
         width: calc(100% - 20px)
@@ -68,20 +54,25 @@
 
           .form-control                            
             border: 1px solid #ced4da
-            border-radius: 0.25rem   
+            border-radius: 0.25rem 
+            cursor: pointer  
 
             &:hover .btn, &:hover span                        
               background-color: unset
               color: variables.$secondary-color
               cursor: pointer
+              font-weight: 700
 
             .btn 
               margin-bottom: unset
-              border-radius: unset
+              border-radius: unset              
 
               &-danger
                 background-color: variables.$secondary-color 
                 border-color: variables.$secondary-color
+                        
+            span
+              margin-left: 5px
 
         &-button
           display: flex
@@ -90,7 +81,7 @@
 
           .btn
             margin-bottom: unset    
-            width: 180px  
+            width: 180px          
               
       table
         width: 100%        

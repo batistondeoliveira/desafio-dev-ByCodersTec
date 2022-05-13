@@ -1,0 +1,18 @@
+@use '../1-base/variables'
+
+.btn 
+  margin-bottom: 1rem 
+  padding: 8px 15px
+  height: 40px
+  color: variables.$light-color
+  border-radius: 20px
+  font-weight: bold
+  text-transform: uppercase
+  background-color: variables.$primary-color
+  cursor: pointer        
+  border: 2px solid variables.$primary-color
+  transation: 0.4s
+
+  &:hover
+    background-color: unset
+    color: variables.$primary-color

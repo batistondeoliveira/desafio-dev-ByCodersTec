@@ -1,0 +1,61 @@
+@use '../1-base/variables'
+@use '../1-base/placeholder'
+@use '../1-base/base-mixins'
+
+.modal     
+  @extend %window-modal     
+
+  & > div 
+    max-width: 95vw
+    min-width: 40vw
+    width: 40vw
+    position: relative
+    margin: 10% auto
+    padding: 7px 20px
+    background: #fff
+  
+  div header 
+    padding: 10px 0px
+
+    h2
+      @extend %margin-modal
+      font-size: 1.5rem
+
+    .fechar
+      position: absolute
+      width: 30px
+      right: -15px
+      top: -20px
+      text-align: center
+      line-height: 30px
+      margin-top: 5px
+      background: #ff4545
+      border-radius: 50%
+      font-size: 16px
+      color: #ffffff
+      border: 0
+      cursor: pointer
+
+  div .modal-body
+    padding: 15px 0px
+
+    p   
+      @extend %margin-modal
+
+  div footer 
+    .modal-footer
+      padding: 10px 0px
+      text-align: right
+      display: flex
+      justify-content: flex-end
+
+      button, a
+        margin-right: 10px
+
+      button:last-child
+        margin-right: 0px
+
+.modal.open        
+  opacity: 1        
+  display: block
+    

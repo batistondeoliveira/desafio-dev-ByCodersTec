@@ -1,14 +1,8 @@
 @use '../1-base/variables'
+@use '../1-base/placeholder'
   
-.preloader  
-  position: fixed
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  background-color: #000
-  z-index: 999
-  opacity: 0.2
+.preloader    
+  @extend %window-modal
 
 .preloader-inner 
   position: absolute
@@ -24,7 +18,7 @@
   min-height: 120px
   border-radius: 10px
   z-index: 1000
-  box-shadow: 2px 2px 2px #000
+  box-shadow: 2px 2px 2px variables.$black-color
 
   .bolas > div 
     display: inline-block    

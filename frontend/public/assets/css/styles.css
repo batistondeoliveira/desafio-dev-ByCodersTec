@@ -31,6 +31,43 @@ ul {
   list-style: none;
 }
 
+.modal, .preloader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  opacity: 1;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+}
+
+.modal div header h2, .modal div .modal-body p {
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  margin-bottom: 1rem;
+  padding: 8px 15px;
+  height: 40px;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #02BE3B;
+  cursor: pointer;
+  border: 2px solid #02BE3B;
+  transation: 0.4s;
+}
+.btn:hover {
+  background-color: unset;
+  color: #02BE3B;
+}
+
 .header {
   background-color: #15161D;
 }
@@ -92,6 +129,9 @@ ul {
 }
 .header-bottom ul li.active {
   border-color: #02BE3B;
+}
+.header-bottom ul li a {
+  color: #000000;
 }
 
 .main-header-container {
@@ -187,26 +227,12 @@ ul {
   align-items: center;
   box-shadow: 2px 2px 2px #b9babc;
 }
+.app-grid-container .app-grid-card.mini {
+  width: 40%;
+}
 .app-grid-container .app-grid-card p {
   font-size: 2rem;
   font-weight: 700;
-}
-.app-grid-container .app-grid-card .btn {
-  margin-bottom: 1rem;
-  padding: 8px 15px;
-  height: 40px;
-  color: #fff;
-  border-radius: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  background-color: #02BE3B;
-  cursor: pointer;
-  border: 2px solid #02BE3B;
-  transation: 0.4s;
-}
-.app-grid-container .app-grid-card .btn:hover {
-  background-color: unset;
-  color: #02BE3B;
 }
 .app-grid-container .app-grid-card .app-grid-form {
   width: calc(100% - 20px);
@@ -218,11 +244,13 @@ ul {
 .app-grid-container .app-grid-card .app-grid-form-input .form-control {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
 .app-grid-container .app-grid-card .app-grid-form-input .form-control:hover .btn, .app-grid-container .app-grid-card .app-grid-form-input .form-control:hover span {
   background-color: unset;
   color: #BC383B;
   cursor: pointer;
+  font-weight: 700;
 }
 .app-grid-container .app-grid-card .app-grid-form-input .form-control .btn {
   margin-bottom: unset;
@@ -231,6 +259,9 @@ ul {
 .app-grid-container .app-grid-card .app-grid-form-input .form-control .btn-danger {
   background-color: #BC383B;
   border-color: #BC383B;
+}
+.app-grid-container .app-grid-card .app-grid-form-input .form-control span {
+  margin-left: 5px;
 }
 .app-grid-container .app-grid-card .app-grid-form-button {
   display: flex;
@@ -327,17 +358,6 @@ ul {
   color: #02BE3B;
 }
 
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #000;
-  z-index: 999;
-  opacity: 0.2;
-}
-
 .preloader-inner {
   position: absolute;
   display: flex;
@@ -352,7 +372,7 @@ ul {
   min-height: 120px;
   border-radius: 10px;
   z-index: 1000;
-  box-shadow: 2px 2px 2px #000;
+  box-shadow: 2px 2px 2px #000000;
 }
 .preloader-inner .bolas > div {
   display: inline-block;
@@ -398,6 +418,56 @@ ul {
     transform: scale(1);
     opacity: 1;
   }
+}
+.modal > div {
+  max-width: 95vw;
+  min-width: 40vw;
+  width: 40vw;
+  position: relative;
+  margin: 10% auto;
+  padding: 7px 20px;
+  background: #fff;
+}
+.modal div header {
+  padding: 10px 0px;
+}
+.modal div header h2 {
+  font-size: 1.5rem;
+}
+.modal div header .fechar {
+  position: absolute;
+  width: 30px;
+  right: -15px;
+  top: -20px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+  background: #ff4545;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+}
+.modal div .modal-body {
+  padding: 15px 0px;
+}
+.modal div footer .modal-footer {
+  padding: 10px 0px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal div footer .modal-footer button, .modal div footer .modal-footer a {
+  margin-right: 10px;
+}
+.modal div footer .modal-footer button:last-child {
+  margin-right: 0px;
+}
+
+.modal.open {
+  opacity: 1;
+  display: block;
 }
 
 /*# sourceMappingURL=styles.css.map */
