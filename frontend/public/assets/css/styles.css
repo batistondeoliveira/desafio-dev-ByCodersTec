@@ -166,7 +166,8 @@ ul {
 .app-grid-container {
   display: flex;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
+  min-height: 200px;
 }
 @media (max-width: 425px) {
   .app-grid-container {
@@ -177,7 +178,7 @@ ul {
 .app-grid-container .app-grid-card {
   border: 1px solid #b9babc;
   position: relative;
-  width: 38%;
+  width: 100%;
   padding: 1rem;
   transition: 0.4s;
   display: flex;
@@ -185,6 +186,10 @@ ul {
   justify-content: center;
   align-items: center;
   box-shadow: 2px 2px 2px #b9babc;
+}
+.app-grid-container .app-grid-card p {
+  font-size: 2rem;
+  font-weight: 700;
 }
 .app-grid-container .app-grid-card .btn {
   margin-bottom: 1rem;
@@ -235,6 +240,23 @@ ul {
 .app-grid-container .app-grid-card .app-grid-form-button .btn {
   margin-bottom: unset;
   width: 180px;
+}
+.app-grid-container .app-grid-card table {
+  width: 100%;
+}
+.app-grid-container .app-grid-card table tbody tr:nth-child(even) {
+  background: #ccc;
+}
+.app-grid-container .app-grid-card table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+.app-grid-container .app-grid-card table tr {
+  border-bottom: 1px solid #b9babc;
+  line-height: 40px;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .footer {
@@ -303,6 +325,79 @@ ul {
 }
 .footer-bottom-social i:hover {
   color: #02BE3B;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  z-index: 999;
+  opacity: 0.2;
+}
+
+.preloader-inner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  background-color: #02BE3B !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 120px;
+  min-height: 120px;
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 2px 2px 2px #000;
+}
+.preloader-inner .bolas > div {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin: 3px;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: animarBola;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.preloader-inner .bolas > div:nth-child(1) {
+  background-color: #BC383B;
+  animation-duration: 0.75s;
+  animation-delay: 0;
+}
+.preloader-inner .bolas > div:nth-child(2) {
+  background-color: #F5A042;
+  animation-duration: 0.75s;
+  animation-delay: 0.12s;
+}
+.preloader-inner .bolas > div:nth-child(3) {
+  background-color: #fff;
+  animation-duration: 0.75s;
+  animation-delay: 0.24s;
+}
+
+@keyframes animarBola {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  16% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0.7;
+  }
+  33% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -18,24 +18,29 @@
   &-container
     display: flex
     justify-content: center
-    padding: 2rem 0
+    padding: 1rem 0
+    min-height: 200px
 
     @include base-mixins.mobile
       flex-direction: column
       align-items: center
 
     .app-grid-card
-      border: 1px solid #b9babc
+      border: 1px solid variables.$border-color
       position: relative
-      width: 38%
+      width: 100%
       padding: 1rem
       transition: 0.4s
       display: flex
       flex-direction: column
       justify-content: center
       align-items: center
-      box-shadow: 2px 2px 2px #b9babc
+      box-shadow: 2px 2px 2px variables.$border-color
       
+      p
+        font-size: 2rem
+        font-weight: 700
+        
       .btn 
         margin-bottom: 1rem 
         padding: 8px 15px
@@ -87,3 +92,20 @@
             margin-bottom: unset    
             width: 180px  
               
+      table
+        width: 100%        
+
+        tbody 
+            tr
+              &:nth-child(even)
+                background: variables.$linha-zebrada
+
+              &:nth-child(odd)
+                background: variables.$light-color
+
+        tr          
+          border-bottom: 1px solid variables.$border-color
+          line-height: 40px
+
+.text-right
+  text-align: right

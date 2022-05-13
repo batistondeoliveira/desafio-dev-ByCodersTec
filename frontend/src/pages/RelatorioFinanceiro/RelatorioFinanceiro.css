@@ -1,0 +1,24 @@
+.header-loja {
+  text-align: left;
+}
+
+.saldo-container {
+  display: flex;
+  justify-content: flex-end;
+  height: 40px;
+  line-height: 40px;
+  width: 100%
+}
+
+.saldo-label {
+  text-align: right;
+  font-weight: 700;
+  width: 86.3%;
+  height: 40px;
+}
+
+.saldo-valor {
+  text-align: right;
+  width: 13.7%;
+  height: 40px;
+}
