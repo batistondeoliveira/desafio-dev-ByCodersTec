@@ -71,7 +71,7 @@ function ImportarCNAB() {
       className="mini" 
       title="Importar arquivo CNAB" 
       messageError={state.error}
-      handleErrorClick={() => { alert('1'); setState({...state, error: undefined})}}
+      handleErrorClick={() => setState({...state, error: undefined})}
       preload={state.preload}      
     >
       <form id="form" className="app-grid-form" onSubmit={(e) => handleSubmit(e)}>
