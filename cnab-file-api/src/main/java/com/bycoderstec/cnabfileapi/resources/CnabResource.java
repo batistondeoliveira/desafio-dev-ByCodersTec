@@ -7,13 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.bycoderstec.cnabfileapi.domain.dto.CnabFileDTO;
 import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
-import com.bycoderstec.cnabfileapi.domain.dto.relatorio.RelatorioDTO;
 import com.bycoderstec.cnabfileapi.services.CnabFileService;
 import com.bycoderstec.cnabfileapi.services.LancamentoService;
-import com.bycoderstec.cnabfileapi.services.RelatorioService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,18 +25,14 @@ public class CnabResource {
 	private CnabFileService cnabFileService;
 	
 	@Autowired
-	private LancamentoService lancamentoService;
-	
-	@Autowired
-	private RelatorioService relatorioService;
+	private LancamentoService lancamentoService;	
 	
 	@Operation(summary = "Processa o arquivo CNAB e devolve o relatório")
 	@PostMapping
-	public ResponseEntity<RelatorioDTO> receiveCnabFile(CnabFileDTO dtoObj) {
-		List<LancamentoDTO> listaLancamentoDTO = cnabFileService.processaCnabFile(dtoObj);
-		lancamentoService.createAll(listaLancamentoDTO);
-		RelatorioDTO obj = relatorioService.gerar();
+	public ResponseEntity<Void> receiveCnabFile(MultipartFile file) {
+		List<LancamentoDTO> listaLancamentoDTO = cnabFileService.processaCnabFile(file);
+		lancamentoService.createAll(listaLancamentoDTO);		
 		
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.noContent().build();
 	}
 }

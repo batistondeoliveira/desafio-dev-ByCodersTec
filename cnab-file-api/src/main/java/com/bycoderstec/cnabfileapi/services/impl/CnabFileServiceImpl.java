@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bycoderstec.cnabfileapi.domain.dto.CnabFileDTO;
 import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.services.CnabFileService;
 import com.bycoderstec.cnabfileapi.services.impl.exceptions.FileException;
@@ -34,14 +33,14 @@ public class CnabFileServiceImpl implements CnabFileService {
 	}
 	
 	@Override
-	public List<LancamentoDTO> processaCnabFile(CnabFileDTO dto) {
+	public List<LancamentoDTO> processaCnabFile(MultipartFile file) {
 		
 		try {
-			if (dto.getConteudo() == null || dto.getConteudo().getBytes().length == 0) {
+			if (file == null || file.getBytes().length == 0) {
 				throw new FileException("O arquivo cnab está vazio.");
 			}
 			
-			return this.fromMultipartFile(dto.getConteudo());		
+			return this.fromMultipartFile(file);		
 		} catch (IOException e) {
 			log.error("Erro ao ler arquivo CNAB. Mensagem");			
 			throw new FileException("Erro ao ler arquivo CNAB");			
