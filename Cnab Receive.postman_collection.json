@@ -7,6 +7,9 @@
 	"item": [
 		{
 			"name": "cnab",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -14,19 +17,9 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "user",
-							"value": "bycoderstec",
-							"type": "default"
-						},
-						{
-							"key": "filename",
-							"value": "cnab.txt",
-							"type": "default"
-						},
-						{
-							"key": "conteudo",
+							"key": "file",
 							"type": "file",
-							"src": "/home/eliel/repositorio/desafio-dev-ByCodersTec/CNAB.txt"
+							"src": "/home/eliel/repositorio/desafio-dev-ByCodersTec/cnab-file-api/src/main/resources/test/CNAB_0_BYTES.txt"
 						}
 					],
 					"options": {
@@ -45,6 +38,63 @@
 					"path": [
 						"cnab-backend",
 						"cnab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "relatorio",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA1",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "1.0",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cnab-backend/relatorio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cnab-backend",
+						"relatorio"
 					]
 				}
 			},
