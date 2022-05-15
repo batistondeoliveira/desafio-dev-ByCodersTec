@@ -17,7 +17,7 @@ Como executar a aplicação
 
 # Como acessar o sistema
 
-1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend) **OBS:** Por ser uma tela de exemplo para consumir a api, não deixei o layout responsivo.
+1. __FrontEnd:__ [http://localhost:8080/cnab-frontend](http://localhost:8080/cnab-frontend)
 2. __BackEnd:__ [http://localhost:8080/cnab-backend](http://localhost:8080/cnab-backend)
 3. __Sonarqube:__ [http://localhost:8080/sonarqube](http://localhost:8080/sonarqube). O Usuário e Senha configurados são **admin** e **bycoderstec** respectivamente.
 4. __Documentação API-DOCS:__ [http://localhost:8080/cnab-backend/docs/v3/api-docs](http://localhost:8080/cnab-backend/docs/v3/api-docs)
@@ -26,8 +26,13 @@ Como executar a aplicação
 
 # Como consumir a API
 
-A api só tem um endpoint e o endereço é [http://localhost:8080/cnab-backend/cnab](http://localhost:8080/cnab-backend/cnab).
-Na documentação do swagger está descrito como consumir a API e no [arquivo do postman](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json), você pode baixá-lo e importá-lo no postman e selecionar a requisição, ir na página Body e selecionar o arquivo CNAB.txt
+A API contém dois endpoints:
+
+- Para subir o arquivo cnab, o endereço é [http://localhost:8080/cnab-backend/cnab](http://localhost:8080/cnab-backend/cnab). No [arquivo do postman](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json), você pode baixá-lo e importá-lo no seu postman e selecionar a requisição **cnab**, ir na página body, selecionar o arquivo CNAB.txt e apertar o botão Send para consumir esse endpoint.
+
+- Para obter o relatório financeiro, o endereço é [http://localhost:8080/cnab-backend/relatorio](http://localhost:8080/cnab-backend/relatorio). No [arquivo do postman](https://github.com/batistondeoliveira/desafio-dev-ByCodersTec/blob/main/Cnab%20Receive.postman_collection.json), você pode baixá-lo e importá-lo no seu postman e selecionar a requisição **relatorio** e apertar o botão Send para consumir esse endpoint.
+
+**OBS:** Na documentação do swagger também está descrito como consumir os endponts.
 
 # Preparando o ambiente de desenvolvimento
 
@@ -36,6 +41,7 @@ Por conta disso, é interessante **instalar o node** e executar o comando **npm 
 No git push, o sistema irá executar todos os testes antes de dar push na branch, evitando assim subir versões com bugs.
 
 **Contra:** Contra essa abordagem é a necessidade de instalar o node na máquina.
+
 **Prós:** Padronização dos commits e validação da qualidade do código evitando commits defeituosos.
 
 Ao meu ver, usando essa abordagem, ganhamos na padronização e qualidade do código. 
