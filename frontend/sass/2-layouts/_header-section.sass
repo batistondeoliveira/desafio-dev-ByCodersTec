@@ -7,14 +7,21 @@
 
   &-top
     background-color: variables.$secondary-bg-color
-    color: variables.$light-color
-
-    @include base-mixins.mobile
-      display: none
+    color: variables.$light-color    
 
     &-container
       @include layouts-mixins.center-content
       padding: .8rem 0            
+
+      @include base-mixins.mobile
+        display: unset
+
+      .info-container
+        @include base-mixins.mobile
+          display: flex
+          flex-direction: column
+          align-items: center  
+          padding: 5px
 
       span
         margin-right: 1rem
@@ -26,7 +33,7 @@
         color: variables.$light-color
 
         &:hover
-          color: variables.$primary-color
+          color: variables.$primary-color      
 
   &-bottom
     background-color: variables.$light-color
@@ -39,7 +46,8 @@
       padding: 1rem 0
 
       @include base-mixins.mobile
-        display: none
+        padding: 0px 10px
+        line-height: 40px
 
       li
         margin-right: 1.3rem
@@ -86,4 +94,4 @@
         @include layouts-mixins.header-icon
 
         @include base-mixins.mobile
-          margin: 1rem                  
+          margin: 1rem

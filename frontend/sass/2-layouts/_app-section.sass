@@ -8,11 +8,15 @@
   padding: 2rem 0
   min-height: 295px
 
+  @include base-mixins.mobile
+    max-width: 99%
+
   h2
     font-size: 2rem
     text-transform: uppercase
 
     @include base-mixins.mobile
+      font-size: 1.5rem
       text-align: center
 
   &-container
@@ -35,11 +39,61 @@
       flex-direction: column
       justify-content: center
       align-items: center
-      box-shadow: 2px 2px 2px variables.$border-color
+      box-shadow: 2px 2px 2px variables.$border-color      
       
       &.mini
         width: 40%
-        
+
+        @include base-mixins.mobile
+          width: 90%               
+
+      &.rel                
+        @include base-mixins.mobile
+          align-items: normal
+
+        .desktop
+          display: block
+          width: 100%
+
+          @include base-mixins.mobile
+            display: none
+
+        .mobile
+          display: none
+          width: 100%
+
+          @include base-mixins.mobile
+            display: block
+
+        .loja
+          .row       
+            border-bottom: 1px solid variables.$border-color
+            line-height: 40px  
+
+            &:nth-child(even)
+              background: variables.$linha-zebrada
+
+            &:nth-child(odd)
+              background: variables.$light-color
+
+            .rel-container
+              height: 100%
+              font-size: 1.2rem
+              line-height: 40px  
+
+              &-titulo
+                text-align: right
+                width: 38%    
+                font-weight: 700
+                display: inline-block
+                padding: 0px 5px
+              
+              &-dado
+                text-align: left
+                width: 62%    
+                display: inline-block    
+                padding: 0px 5px
+                
       p
         font-size: 2rem
         font-weight: 700      
@@ -57,6 +111,10 @@
             border-radius: 0.25rem 
             cursor: pointer  
 
+            @include base-mixins.mobile
+              display: flex
+              flex-direction: column
+
             &:hover .btn, &:hover span                        
               background-color: unset
               color: variables.$secondary-color
@@ -73,6 +131,10 @@
                         
             span
               margin-left: 5px
+
+              @include base-mixins.mobile
+                font-size: 1.3rem
+                margin: 5px 0px
 
         &-button
           display: flex
@@ -100,3 +162,7 @@
 
 .text-right
   text-align: right
+
+.total
+  line-height: 40px
+  border-bottom: 1px solid variables.$border-color

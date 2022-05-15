@@ -75,17 +75,25 @@ ul {
   background-color: #1e1f29;
   color: #fff;
 }
-@media (max-width: 425px) {
-  .header-top {
-    display: none;
-  }
-}
 .header-top-container {
   max-width: 1170px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   padding: 0.8rem 0;
+}
+@media (max-width: 425px) {
+  .header-top-container {
+    display: unset;
+  }
+}
+@media (max-width: 425px) {
+  .header-top-container .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
 }
 .header-top-container span {
   margin-right: 1rem;
@@ -114,7 +122,8 @@ ul {
 }
 @media (max-width: 425px) {
   .header-bottom ul {
-    display: none;
+    padding: 0px 10px;
+    line-height: 40px;
   }
 }
 .header-bottom ul li {
@@ -194,12 +203,18 @@ ul {
   padding: 2rem 0;
   min-height: 295px;
 }
+@media (max-width: 425px) {
+  .app-grid {
+    max-width: 99%;
+  }
+}
 .app-grid h2 {
   font-size: 2rem;
   text-transform: uppercase;
 }
 @media (max-width: 425px) {
   .app-grid h2 {
+    font-size: 1.5rem;
     text-align: center;
   }
 }
@@ -230,6 +245,62 @@ ul {
 .app-grid-container .app-grid-card.mini {
   width: 40%;
 }
+@media (max-width: 425px) {
+  .app-grid-container .app-grid-card.mini {
+    width: 90%;
+  }
+}
+@media (max-width: 425px) {
+  .app-grid-container .app-grid-card.rel {
+    align-items: normal;
+  }
+}
+.app-grid-container .app-grid-card.rel .desktop {
+  display: block;
+  width: 100%;
+}
+@media (max-width: 425px) {
+  .app-grid-container .app-grid-card.rel .desktop {
+    display: none;
+  }
+}
+.app-grid-container .app-grid-card.rel .mobile {
+  display: none;
+  width: 100%;
+}
+@media (max-width: 425px) {
+  .app-grid-container .app-grid-card.rel .mobile {
+    display: block;
+  }
+}
+.app-grid-container .app-grid-card.rel .loja .row {
+  border-bottom: 1px solid #b9babc;
+  line-height: 40px;
+}
+.app-grid-container .app-grid-card.rel .loja .row:nth-child(even) {
+  background: #ccc;
+}
+.app-grid-container .app-grid-card.rel .loja .row:nth-child(odd) {
+  background: #fff;
+}
+.app-grid-container .app-grid-card.rel .loja .row .rel-container {
+  height: 100%;
+  font-size: 1.2rem;
+  line-height: 40px;
+}
+.app-grid-container .app-grid-card.rel .loja .row .rel-container-titulo {
+  text-align: right;
+  width: 38%;
+  font-weight: 700;
+  display: inline-block;
+  padding: 0px 5px;
+}
+.app-grid-container .app-grid-card.rel .loja .row .rel-container-dado {
+  text-align: left;
+  width: 62%;
+  display: inline-block;
+  padding: 0px 5px;
+}
 .app-grid-container .app-grid-card p {
   font-size: 2rem;
   font-weight: 700;
@@ -245,6 +316,12 @@ ul {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+@media (max-width: 425px) {
+  .app-grid-container .app-grid-card .app-grid-form-input .form-control {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .app-grid-container .app-grid-card .app-grid-form-input .form-control:hover .btn, .app-grid-container .app-grid-card .app-grid-form-input .form-control:hover span {
   background-color: unset;
@@ -262,6 +339,12 @@ ul {
 }
 .app-grid-container .app-grid-card .app-grid-form-input .form-control span {
   margin-left: 5px;
+}
+@media (max-width: 425px) {
+  .app-grid-container .app-grid-card .app-grid-form-input .form-control span {
+    font-size: 1.3rem;
+    margin: 5px 0px;
+  }
 }
 .app-grid-container .app-grid-card .app-grid-form-button {
   display: flex;
@@ -288,6 +371,11 @@ ul {
 
 .text-right {
   text-align: right;
+}
+
+.total {
+  line-height: 40px;
+  border-bottom: 1px solid #b9babc;
 }
 
 .footer {
@@ -435,6 +523,11 @@ ul {
   margin: 10% auto;
   padding: 7px 20px;
   background: #fff;
+}
+@media (max-width: 425px) {
+  .modal > div {
+    min-width: 90vw;
+  }
 }
 .modal div header {
   padding: 10px 0px;
