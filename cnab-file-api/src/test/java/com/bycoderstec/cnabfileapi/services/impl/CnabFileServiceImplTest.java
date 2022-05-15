@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bycoderstec.cnabfileapi.domain.dto.CnabFileDTO;
 import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.services.impl.exceptions.FileException;
 
@@ -24,9 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @SpringBootTest
 @RequiredArgsConstructor
-class CnabFileServiceImplTest {
-	
-	private static final String BYCODERSTEC = "bycoderstec";
+class CnabFileServiceImplTest {	
 
 	private static final String CNAB_FILE_NAME = "src/main/resources/test/CNAB.txt";
 	
@@ -35,45 +32,41 @@ class CnabFileServiceImplTest {
 	@InjectMocks
 	private CnabFileServiceImpl service;
 		
-	private CnabFileDTO dto;
-	private CnabFileDTO dtoBytesZero;
+	private MultipartFile file;
+	private MultipartFile fileBytesZero;
 	
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
-		dto = this.loadFile(CNAB_FILE_NAME);
-		dtoBytesZero = this.loadFile(CNAB_FILE_NAME_WITH_BYTES_ZERO);
+		file = this.loadFile(CNAB_FILE_NAME);
+		fileBytesZero = this.loadFile(CNAB_FILE_NAME_WITH_BYTES_ZERO);
 	}
 	
 	@Test
 	void whenProcessaCnabFileThenReturnLancamentoList() {
-		List<LancamentoDTO> lancamento = service.processaCnabFile(dto);
+		List<LancamentoDTO> lancamento = service.processaCnabFile(file);
 		
 		assertEquals(21, lancamento.size());
 	}
 	
 	@Test
-	void whenProcessaCnabFileAndConteudoNullThenThronFileException() {
-		dto.setConteudo(null);		
-		
+	void whenProcessaCnabFileAndConteudoNullThenThronFileException() {					
 		assertThrowsExactly(FileException.class, () -> { 
-			service.processaCnabFile(dto); 
+			service.processaCnabFile(null); 
 		});
 	}
 	
 	@Test
 	void whenProcessaCnabFileAndConteudoBytesIsZeroThenThronFileException() {		
 		assertThrowsExactly(FileException.class, () -> { 
-			service.processaCnabFile(dtoBytesZero);
+			service.processaCnabFile(fileBytesZero);
 		});
 	}
 		
-	private CnabFileDTO loadFile(String cnabFileName) {		
+	private MultipartFile loadFile(String cnabFileName) {		
 		try {			
 		    try (InputStream inputStream = new FileInputStream(cnabFileName)) {
-				MultipartFile conteudo = new MockMultipartFile(cnabFileName, inputStream.readAllBytes());
-				
-				return new CnabFileDTO(cnabFileName, conteudo, BYCODERSTEC);
+				return new MockMultipartFile(cnabFileName, inputStream.readAllBytes());							
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bycoderstec.cnabfileapi.domain.Lancamento;
 import com.bycoderstec.cnabfileapi.domain.Loja;
 import com.bycoderstec.cnabfileapi.domain.Representante;
-import com.bycoderstec.cnabfileapi.domain.dto.CnabFileDTO;
 import com.bycoderstec.cnabfileapi.domain.dto.LancamentoDTO;
 import com.bycoderstec.cnabfileapi.domain.dto.relatorio.LancamentoRelatorioDTO;
 import com.bycoderstec.cnabfileapi.domain.dto.relatorio.LojaRelatorioDTO;
@@ -46,8 +45,6 @@ class CnabResourceTest {
 	
 	private static final String CNAB_FILE_NAME = "src/main/resources/test/CNAB.txt";
 
-	private static final String BYCODERSTEC = "ByCodersTec";
-	
 	private static final int ID_LANCAMENTO = 1;
 
 	private static final int TIPO_TRANSACAO = TipoTransacaoCnabEnum.DEBITO.getCod();
@@ -69,8 +66,6 @@ class CnabResourceTest {
 	private static final Integer ID_LOJA = 1;
 	
 	private static final String NOME_LOJA = "ByCodersTec";
-	
-	private static final Integer INDEX = 0;
 	
 	@InjectMocks
 	private CnabResource resource;
@@ -105,7 +100,7 @@ class CnabResourceTest {
     
     private RelatorioDTO relatorioDTO;
     
-    private CnabFileDTO dto;    
+    private MultipartFile file;    
 	
 	private LancamentoDTO lancamentoDTO;
 	
@@ -117,7 +112,7 @@ class CnabResourceTest {
     }
     
     @Test
-    void whenCreateThenReturnCreated() {
+    void whenCreateThenReturnNoContent() {
     	when(lojaService.findAll()).thenReturn(List.of(loja));
 		when(lancamentoService.findByLoja(any())).thenReturn(List.of(lancamento));
 		when(representanteService.findById(anyInt())).thenReturn(representante);
@@ -127,23 +122,17 @@ class CnabResourceTest {
     	when(service.processaCnabFile(any())).thenReturn(List.of(lancamentoDTO));
     	when(relatorioService.gerar()).thenReturn(relatorioDTO);
 
-        ResponseEntity<RelatorioDTO> response = resource.receiveCnabFile(dto);
+        ResponseEntity<Void> response = resource.receiveCnabFile(file);
 
         assertNotNull(response);
         assertEquals(ResponseEntity.class, response.getClass());
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(NOME_LOJA, response.getBody().getLoja().get(INDEX).getNome());        		
-		assertEquals(1, response.getBody().getLoja().get(INDEX).getLancamento().size());
-		assertEquals(VALOR, response.getBody().getLoja().get(INDEX).getSaldoPorLoja());
-		assertEquals(VALOR, response.getBody().getSaldoEmConta());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());        
     }	
 	
 	private void loadFile() {
 		try {
 			try (InputStream inputStream = new FileInputStream(CNAB_FILE_NAME)) {					    
-				MultipartFile conteudo = new MockMultipartFile(CNAB_FILE_NAME, inputStream.readAllBytes());
-					
-				dto = new CnabFileDTO(CNAB_FILE_NAME, conteudo, BYCODERSTEC);			
+				file = new MockMultipartFile(CNAB_FILE_NAME, inputStream.readAllBytes());										
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
