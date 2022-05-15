@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const HeaderBottom = () => {
   const menu = [    
@@ -7,7 +8,9 @@ const HeaderBottom = () => {
     {name: "Relatório", link: "/relatorio"}    
   ];
 
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  
+
+  const location = useLocation();
 
   return (
     <div className="header-bottom">
@@ -16,8 +19,7 @@ const HeaderBottom = () => {
           {menu.map((menu, index) => 
             <li 
               key={index} 
-              className={index === activeIndex ? 'active' : ''} 
-              onClick={() => setActiveIndex(index)}
+              className={menu.link === location.pathname ? 'active' : ''}              
             >
               <Link to={menu.link}>
                 {menu.name}
