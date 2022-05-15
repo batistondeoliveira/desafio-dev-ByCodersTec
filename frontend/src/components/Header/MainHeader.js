@@ -1,7 +1,7 @@
 const MainHeader = () => 
   <div className="main-header">
     <div className="main-header-container">
-      <a href="#" id="brand">          
+      <a href="/#" id="brand">          
         <img src={`${process.env.PUBLIC_URL}/assets/img/logo.svg`} alt="logo" />
       </a>        
       <div className="header-actions-menu">
