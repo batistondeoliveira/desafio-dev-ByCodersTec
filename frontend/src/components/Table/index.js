@@ -1,9 +1,11 @@
-import Table from './Table';
+import TableDesktop from './TableDesktop';
+import TableMobile from './TableMobile';
 import AlignEnum from './AlignEnum';
 import ColumnTypeEnum from './ColumnTypeEnum';
 
 export {
-  Table,
+  TableDesktop,
+  TableMobile,
   AlignEnum,
   ColumnTypeEnum
 }
