@@ -46,9 +46,9 @@ function ImportarCNAB() {
 
     var formData = new FormData();
 
-    formData.append('conteudo', file.file);
+    formData.append('file', file.file);
     
-    CnabService.send(formData).then(response => {
+    CnabService.send(formData).then(() => {
       setState({
         ...state,
         txtButton: 'Processar',
