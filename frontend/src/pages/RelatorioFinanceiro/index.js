@@ -1,7 +1,8 @@
 import React from 'react';
 import Main from '../../components/Main';
 import Empty from './Empty';
-import TableRelatorio from './TableRelatorio';
+import RelatorioDesktop from './Desktop';
+import RelatorioMobile from './Mobile';
 import RelatorioService from '../../service/RelatorioService';
 import './RelatorioFinanceiro.css';
 
@@ -19,12 +20,15 @@ const RelatorioFinanceiro = () => {
   }, []);
 
   return (          
-    <Main title="Relatório Financeiro" preload={preload}>              
+    <Main className="rel" title="Relatório Financeiro" preload={preload}>              
       {!preload &&
         <>
           {data.loja.length === 0
             ? <Empty />
-            : <TableRelatorio show={data.loja.length > 0} data={data} />
+            : <>
+              <RelatorioMobile show={data.loja.length > 0} data={data} /> 
+              <RelatorioDesktop show={data.loja.length > 0} data={data} />
+            </>
           }                                
         </>
       }
